@@ -39,7 +39,7 @@ module.exports = (sequelize) => {
       genre: {
         type: DataTypes.JSON,
       },
-      default: {
+      added: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
