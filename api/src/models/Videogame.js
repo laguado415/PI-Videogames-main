@@ -24,6 +24,9 @@ module.exports = (sequelize) => {
         type: DataTypes.DATEONLY,
       },
       rating: {
+        type: DataTypes.FLOAT,
+      },
+      ratings: {
         type: DataTypes.JSON,
       },
       platforms: {
@@ -32,6 +35,13 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
+      },
+      genre: {
+        type: DataTypes.JSON,
+      },
+      default: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     {

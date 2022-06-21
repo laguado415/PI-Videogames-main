@@ -17,6 +17,7 @@ module.exports = {
           image: genre.image_background,
         };
       });
+    
       return res.json(await Genre.bulkCreate(data));
     } catch (err) {
       return res.json(err);
