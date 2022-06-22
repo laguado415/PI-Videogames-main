@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
-const { Op, conn: sequelize, Videogame } = require("../db");
+const { Op, conn: sequelize, Videogame, Genre } = require("../db");
 
 //---------------------add collection de RAWG----------
 const formatGame = async () => {
@@ -30,8 +30,25 @@ const formatGame = async () => {
     for (gamesCollection of collection) {
       await Videogame.bulkCreate(gamesCollection);
     }
+    await addCollectionGenre();
   } catch (err) {
     throw err;
+  }
+};
+
+//--------------------add collection de genre_games-------
+const addCollectionGenre = async () => {
+  let collection = await Videogame.findAll();
+  for (let game of collection) {
+    for (let genre of game.genre) {
+      // console.log(genre);
+      let instanceGenre = await Genre.findAll({
+        where: {
+          name: `${genre}`,
+        },
+      });
+      game.addGenre(instanceGenre, { through: { genres: `${genre}` } });
+    }
   }
 };
 
@@ -44,6 +61,8 @@ const findAndCountAll = async ({
 }) => {
   let where = {};
   let order = [];
+  let attributes = {};
+
   if (options) {
     let validate = Object.keys(options);
     //------------repetidos-------------------------
@@ -64,7 +83,16 @@ const findAndCountAll = async ({
       where[key] = { [Op.iLike]: `%${value}%` };
     }
   }
+  if (filter) {
+    if (filter.hasOwnProperty("added") && !Array.isArray(filter.added)) {
+      where.added = filter.added;
+    }
+    // if (filter.hasOwnProperty("genre")) {
+    //   where.genres = { [Op.or]: [filter.genre] };
+    // }
+  }
   return Videogame.findAndCountAll({
+    attributes,
     order,
     where,
     limit,
@@ -74,5 +102,6 @@ const findAndCountAll = async ({
 
 module.exports = {
   formatGame,
+  addCollectionGenre,
   findAndCountAll,
 };
