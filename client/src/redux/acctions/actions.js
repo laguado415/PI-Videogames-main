@@ -10,3 +10,7 @@ export const find = (payload) => {
       .catch(({ response }) => console.log(response.data));
   };
 };
+
+export const filterAll = (payload) => {
+  console.log(payload);
+};

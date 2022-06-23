@@ -23,11 +23,10 @@ module.exports = {
         return res.json(games);
       }
 
-      if (find) {
+      if (find || filter) {
         throw new Error("no se encontraron games");
       }
-
-      await repoVideoGame.formatGame();
+      
       return res.end();
     } catch (err) {
       return res.status(404).json(err.message);
@@ -44,6 +43,7 @@ module.exports = {
         throw new Error("videogame no encontrado");
       }
 
+      //#region
       // _isAttribute: [Function (anonymous)],
       // getGenres: [Function (anonymous)],
       // countGenres: [Function (anonymous)],
@@ -55,6 +55,7 @@ module.exports = {
       // removeGenre: [Function (anonymous)],
       // removeGenres: [Function (anonymous)],
       // createGenre: [Function (anonymous)]
+      //#endregion
 
       return res.json(videogame);
     } catch (err) {

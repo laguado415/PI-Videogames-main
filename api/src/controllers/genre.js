@@ -1,6 +1,4 @@
-require("dotenv").config(); //averiguar como se usa .env
-const { API_KEY } = process.env;
-const axios = require("axios");
+const repoGenre = require("../repositories/genres");
 const { Genre } = require("../db");
 
 module.exports = {
@@ -10,15 +8,8 @@ module.exports = {
       if (validate.length) {
         return res.json(validate);
       }
-      let { data } = await axios(`https://api.rawg.io/api/genres${API_KEY}`);
-      data = data.results.map((genre) => {
-        return {
-          name: genre.name,
-          image: genre.image_background,
-        };
-      });
-    
-      return res.json(await Genre.bulkCreate(data));
+      // res.json(await generatorGenre());
+      res.end();
     } catch (err) {
       return res.json(err);
     }

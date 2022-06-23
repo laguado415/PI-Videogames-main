@@ -19,6 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
+const { formatGame } = require("./src/repositories/videogames");
 
 // Syncing all the models at once.
 
@@ -26,10 +27,11 @@ Promise.all([conn.authenticate, conn.sync({ force: true })])
   .then(() =>
     server.listen(3001, () => {
       console.log("URL: http://localhost:3001/");
+      //revizary configuarar
+      formatGame();
     })
   )
   .catch((err) => console.log("se presento un error", err));
-  
 
 // conn.sync({ force: true }).then(() => {
 //   server.listen(3001, () => {

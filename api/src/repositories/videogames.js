@@ -2,6 +2,7 @@ require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
 const { Op, conn: sequelize, Videogame, Genre } = require("../db");
+const { generatorGenre } = require("../repositories/genres");
 
 //---------------------add collection de RAWG----------
 const formatGame = async () => {
@@ -30,6 +31,7 @@ const formatGame = async () => {
     for (gamesCollection of collection) {
       await Videogame.bulkCreate(gamesCollection);
     }
+    await generatorGenre();
     await addCollectionGenre();
   } catch (err) {
     throw err;
@@ -62,6 +64,7 @@ const findAndCountAll = async ({
   let where = {};
   let order = [];
   let attributes = {};
+  let include = "";
 
   if (options) {
     let validate = Object.keys(options);
@@ -78,6 +81,7 @@ const findAndCountAll = async ({
     }
   }
   if (find) {
+    //refactorizar
     find = Object.entries(find);
     for (let [key, value] of find) {
       where[key] = { [Op.iLike]: `%${value}%` };
@@ -87,13 +91,26 @@ const findAndCountAll = async ({
     if (filter.hasOwnProperty("added") && !Array.isArray(filter.added)) {
       where.added = filter.added;
     }
-    // if (filter.hasOwnProperty("genre")) {
-    //   where.genres = { [Op.or]: [filter.genre] };
-    // }
+    //Eager loading
+    if (filter.hasOwnProperty("genre")) {
+      let { genre } = filter;
+      if (!Array.isArray(genre)) {
+        genre = [genre];
+      }
+      include = {};
+      include.model = Genre;
+      include.as = "genres";
+      include.where = {
+        name: {
+          [Op.or]: genre,
+        },
+      };
+    }
   }
   return Videogame.findAndCountAll({
     attributes,
     order,
+    include,
     where,
     limit,
     offset,
