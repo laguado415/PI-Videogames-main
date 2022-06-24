@@ -1,17 +1,11 @@
 const repoGenre = require("../repositories/genres");
-const { Genre } = require("../db");
 
 module.exports = {
   getAll: async (req, res) => {
     try {
-      let validate = await Genre.findAll();
-      if (validate.length) {
-        return res.json(validate);
-      }
-      // res.json(await generatorGenre());
-      res.end();
+      return res.json(await repoGenre.findAll());
     } catch (err) {
-      return res.json(err);
+      return res.status(404).json(err.message);
     }
   },
 };

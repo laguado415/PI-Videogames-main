@@ -2,11 +2,30 @@ import axios from "axios";
 export const FIND = "find";
 export const ORDER = "order";
 export const FILTER = "filter";
+export const PAGINATION = "pagination";
 
-export const find = (payload) => {
+export const find = (url) => {
   return async (dispatch) => {
-    return axios(`http://localhost:3001/videogames?find[name]=${payload}`)
-      .then(({ data }) => dispatch({ type: FIND, payload: data.rows }))
+    return axios(url.join(""))
+      .then(({ data }) =>
+        dispatch({
+          type: FIND,
+          payload: { data: data.rows, url: url, countGames: data.count },
+        })
+      )
+      .catch(({ response }) => console.log(response.data));
+  };
+};
+
+export const pagination = (url, page) => {
+  return async (dispatch) => {
+    return axios(url.join(""))
+      .then(({ data }) =>
+        dispatch({
+          type: PAGINATION,
+          payload: { data: data.rows, url: url, page: page },
+        })
+      )
       .catch(({ response }) => console.log(response.data));
   };
 };

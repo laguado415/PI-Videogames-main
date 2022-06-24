@@ -1,6 +1,6 @@
 .header{
   /* 8 */
-  max-height: 8vh;
+  height: 8vh;
   width: 100vw;
   margin: auto;
   padding: 14px 0px;
@@ -29,7 +29,7 @@
   width: 42%;
 }
 
-.filter{
+/* .filter{
   display: flex;
 }
 
@@ -70,7 +70,7 @@ ul{
 
 .filter > li:hover > ul{
    visibility: visible;
-}
+} */
 
 
 

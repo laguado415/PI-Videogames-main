@@ -1,4 +1,24 @@
-.conteiner{
-  width: 100vw;
+.home{
+  display: grid;
   height: 77%;
+  margin-top: 0px;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 35px 55px auto 35px;
+  grid-template-areas: "search search"
+                        "order filter"
+                        "conteiner conteiner"
+                        "page page";
+  justify-items: center;
+}
+
+.conteiner{
+  grid-area: conteiner;
+  width: 93%;
+  background-color:  #0004 ;
+  border: 5px solid black;
+  min-height: 45vh;
+}
+
+.pagination{
+  grid-area: page;
 }

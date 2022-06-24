@@ -1,4 +1,3 @@
-const { Videogame } = require("../db");
 const repoVideoGame = require("../repositories/videogames");
 
 module.exports = {
@@ -26,8 +25,8 @@ module.exports = {
       if (find || filter) {
         throw new Error("no se encontraron games");
       }
-      
-      return res.end();
+
+      throw new Error("Data Base vacia");
     } catch (err) {
       return res.status(404).json(err.message);
     }
@@ -38,28 +37,9 @@ module.exports = {
       if (!id) {
         throw new Error("id requerido");
       }
-      let videogame = await Videogame.findByPk(id);
-      if (!videogame) {
-        throw new Error("videogame no encontrado");
-      }
-
-      //#region
-      // _isAttribute: [Function (anonymous)],
-      // getGenres: [Function (anonymous)],
-      // countGenres: [Function (anonymous)],
-      // hasGenre: [Function (anonymous)],
-      // hasGenres: [Function (anonymous)],
-      // setGenres: [Function (anonymous)],
-      // addGenre: [Function (anonymous)],
-      // addGenres: [Function (anonymous)],
-      // removeGenre: [Function (anonymous)],
-      // removeGenres: [Function (anonymous)],
-      // createGenre: [Function (anonymous)]
-      //#endregion
-
-      return res.json(videogame);
+      return res.json(await repoVideoGame.findById(id));
     } catch (err) {
-      return res.status(404).json({ message: err.message });
+      return res.status(404).json(err.message);
     }
   },
 };

@@ -1,88 +1,29 @@
 import React, { useState } from "react";
 import style from "../style/header.module.css";
-import { useDispatch } from "react-redux";
-import { find, filterAll } from "../redux/acctions/actions.js";
+import { useDispatch, useSelector } from "react-redux";
+import { find } from "../redux/acctions/actions.js";
 
 export default function Header() {
   let [search, setSearch] = useState({
     find: "",
     currentFind: "",
-    filter: {
-      genre: {},
-      added: "",
-    },
   });
 
   let dispatch = useDispatch();
+  let { url } = useSelector((state) => state);
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
   };
 
-  //#region
-  // filter: {
-  //   action: "",
-  //   indie: "",
-  //   adventure: "",
-  //   rpg: "",
-  //   strategy: "",
-  //   shooter: "",
-  //   casual: "",
-  //   simulation: "",
-  //   puzzle: "",
-  //   arcade: "",
-  //   platformer: "",
-  //   racing: "",
-  //   massively_Multiplayer: "",
-  //   sports: "",
-  //   fighting: "",
-  //   family: "",
-  //   board_Games: "",
-  //   educational: "",
-  //   card: "",
-  // },
-  //#endregion
-  //e.target [value,checked,name]
-  const handleClickGenre = (e) => {
-    let { filter } = search;
-    if (e.target.checked) {
-      setSearch({
-        ...search,
-        filter: {
-          ...filter,
-          genre: { ...filter.genre, [e.target.name]: e.target.value },
-        },
-      });
-    } else {
-      setSearch({
-        ...search,
-        filter: {
-          ...filter,
-          genre: { ...filter.genre, [e.target.name]: "" },
-        },
-      });
-    }
-    // dispatch(filterAll({ find: search.currentFind, filter: search.filter }));
-  };
-
-  const handleClickAdded = (e) => {
-    if (e.target.checked) {
-      setSearch({
-        ...search,
-        filter: { ...search.filter, [e.target.name]: e.target.value },
-      });
-    } else {
-      setSearch({
-        ...search,
-        filter: { ...search.filter, [e.target.name]: "" },
-      });
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(find(search.find));
-    setSearch({ ...search, currentFind: search.find, find: "" });
+    if (search.find) {
+      url[4] = "";
+      url[1] = `&find[name]=${search.find}`;
+      dispatch(find(url));
+      setSearch({ ...search, currentFind: search.find, find: "" });
+    }
   };
 
   return (
@@ -102,63 +43,9 @@ export default function Header() {
           </button>
         </form>
         <div className={style.menu}>
-          <ul className={style.filter}>
-            <li>
-              <label>Filter</label>
-              <ul>
-                <li>
-                  <label>GENRE</label>
-                  <ul>
-                    <li>
-                      <input
-                        onClick={handleClickGenre}
-                        type="checkbox"
-                        name="action"
-                        value="Action"
-                      />
-                      <label>ACTION</label>
-                    </li>
-                    <li>
-                      <input
-                        onClick={handleClickGenre}
-                        type="checkbox"
-                        name="indie"
-                        value="Indie"
-                      />
-                      <label>INDE</label>
-                    </li>
-                    <li>
-                      <input
-                        onClick={handleClickGenre}
-                        type="checkbox"
-                        name="rpg"
-                        value="RPG"
-                      />
-                      <label>RPG</label>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <input
-                    onClick={handleClickAdded}
-                    type="checkbox"
-                    name="added"
-                    value="false"
-                  />
-                  <label>EXISTENTE</label>
-                </li>
-                <li>
-                  <input
-                    onClick={handleClickAdded}
-                    type="checkbox"
-                    name="added"
-                    value="true"
-                  />
-                  <label>AGREGADO</label>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <span>Home</span>
+          {"|"}
+          <span>Create Game</span>
         </div>
       </nav>
     </header>
