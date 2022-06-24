@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
       },
-      genre: {
+      genreJson: {
         type: DataTypes.JSON,
       },
       added: {

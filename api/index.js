@@ -26,9 +26,9 @@ const { formatGame } = require("./src/repositories/videogames");
 Promise.all([conn.authenticate, conn.sync({ force: true })])
   .then(() =>
     server.listen(3001, async () => {
-      console.log("URL: http://localhost:3001/");
       //revizar y configuarar
       await formatGame();
+      console.log("URL: http://localhost:3001/");
     })
   )
   .catch((err) => console.log("se presento un error", err));

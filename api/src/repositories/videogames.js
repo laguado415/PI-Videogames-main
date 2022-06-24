@@ -21,7 +21,7 @@ const formatGame = async () => {
             image: game.background_image,
             released: game.released,
             description: `https://api.rawg.io/api/games/${game.id}${API_KEY}`,
-            genre: game.genres.map((genre) => genre.name),
+            genreJson: game.genres.map((genre) => genre.name),
           };
         })
       );
@@ -45,14 +45,12 @@ const addCollectionGenre = async () => {
   try {
     let collection = await Videogame.findAll();
     for (let game of collection) {
-      for (let genre of game.genre) {
-        let instanceGenre = await Genre.findAll({
-          where: {
-            name: `${genre}`,
-          },
-        });
-        game.addGenre(instanceGenre, { through: { genres: `${genre}` } });
-      }
+      let genre = await Genre.findAll({
+        where: {
+          name: game.genreJson,
+        },
+      });
+      await game.addGenres(genre);
     }
   } catch (err) {
     throw new Error("error al adicionar generos");

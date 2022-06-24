@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr ;
   grid-template-rows: 35px 55px auto 35px;
   grid-template-areas: "search search"
-                        "order filter"
+                        "options options"
                         "conteiner conteiner"
                         "page page";
   justify-items: center;
@@ -21,4 +21,11 @@
 
 .pagination{
   grid-area: page;
+}
+
+.options{
+  grid-area: options;
+  display: flex;
+  width: 77%;
+ justify-content: space-between;
 }

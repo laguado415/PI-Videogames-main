@@ -17,6 +17,16 @@ export const find = (url) => {
   };
 };
 
+export const order = (url) => {
+  return async (dispatch) => {
+    return axios(url.join(""))
+      .then(({ data }) =>
+        dispatch({ type: ORDER, payload: { data: data.rows, url: url } })
+      )
+      .catch(({ response }) => console.log(response.data));
+  };
+};
+
 export const pagination = (url, page) => {
   return async (dispatch) => {
     return axios(url.join(""))

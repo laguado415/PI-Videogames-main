@@ -22,6 +22,13 @@ export default function reducers(state = videogames, { type, payload }) {
         countGames: payload.countGames,
         page: 0,
       };
+    case ORDER:
+      return {
+        ...state,
+        games: [...payload.data],
+        url: payload.url,
+        page: 0,
+      };
     case PAGINATION:
       return {
         ...state,

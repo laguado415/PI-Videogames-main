@@ -28,7 +28,7 @@ export default function Pagination() {
   return (
     <>
       <button type="button" name="previus" onClick={handleClick}>
-        anterior
+        anteriors
       </button>
       <button type="button" name="next" onClick={handleClick}>
         siguiente
