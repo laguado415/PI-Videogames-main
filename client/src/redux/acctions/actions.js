@@ -6,7 +6,7 @@ export const PAGINATION = "pagination";
 
 export const find = (url) => {
   return async (dispatch) => {
-    return axios(url.join(""))
+    return axios(Object.values(url).flat().join(""))
       .then(({ data }) =>
         dispatch({
           type: FIND,
@@ -17,9 +17,19 @@ export const find = (url) => {
   };
 };
 
-export const order = (url) => {
+export const filter = (url) => {
   return async (dispatch) => {
     return axios(url.join(""))
+      .then(({ data }) =>
+        dispatch({ type: FILTER, payload: { data: data.rows, url: url } })
+      )
+      .catch(({ response }) => console.log(response.data));
+  };
+};
+
+export const order = (url) => {
+  return async (dispatch) => {
+    return axios(Object.values(url).flat().join(""))
       .then(({ data }) =>
         dispatch({ type: ORDER, payload: { data: data.rows, url: url } })
       )
@@ -29,7 +39,7 @@ export const order = (url) => {
 
 export const pagination = (url, page) => {
   return async (dispatch) => {
-    return axios(url.join(""))
+    return axios(Object.values(url).flat().join(""))
       .then(({ data }) =>
         dispatch({
           type: PAGINATION,
@@ -38,8 +48,4 @@ export const pagination = (url, page) => {
       )
       .catch(({ response }) => console.log(response.data));
   };
-};
-
-export const filterAll = (payload) => {
-  console.log(payload);
 };

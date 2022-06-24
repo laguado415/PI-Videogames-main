@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useUrl from "../hooks/useUrl";
 import { pagination } from "../redux/acctions/actions";
 
 export default function Pagination() {
   let dispatch = useDispatch();
   let { url, page, countGames: count } = useSelector((state) => state);
+  let { addUrl } = useUrl(url);
 
   const handleClick = (e) => {
     if (e.target.name === "next") {
@@ -12,14 +14,14 @@ export default function Pagination() {
       // si el numero de elemento es menor al resultado no entra
       if ((page + 1) * 15 < count) {
         page++;
-        url[4] = `&page=${page}`;
+        url = addUrl({ page });
+        console.log(url);
         dispatch(pagination(url, page));
       }
     } else {
       if (page > 0) {
         page--;
-        console.log(page);
-        url[4] = `&page=${page}`;
+        url = addUrl({ page });
         dispatch(pagination(url, page));
       }
     }

@@ -1,28 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useUrl from "../hooks/useUrl";
 import { order } from "../redux/acctions/actions";
 
 export default function Order() {
-  let column = ["name", "rating", "none"];
+  let [state, setState] = useState({
+    order: {
+      name: "",
+      value: "",
+    },
+  });
+
+  let column = ["name", "rating"];
   let direction = ["ASC", "DESC"];
 
+  useEffect(() => {
+    handleSubmit();
+  }, [state]);
+
   let dispatch = useDispatch();
-  let { url } = useSelector((state) => state);
+  let { url, countGames } = useSelector((state) => state);
+  let { addUrl, resetRequest } = useUrl(url);
 
   const handleChange = (e) => {
-    if (column.includes(e.target.value)) {
-      url[4] = "";
-      if (e.target.value === "none") {
-        url[3] = "";
+    let { value } = e.target;
+    value === "none" &&
+      setState({ order: { name: "none", value: `${value}` } });
+    column.includes(value) &&
+      setState({ order: { name: "column", value: `${value}` } });
+    direction.includes(value) &&
+      setState({ order: { name: "direction", value: `${value}` } });
+  };
+
+  const handleSubmit = () => {
+    let { name, value } = state.order;
+    if (name && value && countGames) {
+      if (name === "none") {
+        url = resetRequest("order");
+        console.log(url);
         dispatch(order(url));
       } else {
-        url[3] = `&order[column]=${e.target.value}`;
-        dispatch(order(url));
-      }
-    } else {
-      url[4] = "";
-      if (direction.includes(e.target.value)) {
-        url[3] = `&order[direction]=${e.target.value}`;
+        url = addUrl(state);
         dispatch(order(url));
       }
     }
@@ -30,23 +48,12 @@ export default function Order() {
 
   return (
     <>
-      {/* <label for="Order">Order</label> */}
-      <select name="Order" id="Order" onChange={handleChange}>
-        <option name="none" value="none">
-          none
-        </option>
-        <option name="direction" value="ASC">
-          Ascendente
-        </option>
-        <option name="direction" value="DESC">
-          Descendente
-        </option>
-        <option name="column" value="name">
-          Alfabetic
-        </option>
-        <option name="column" value="rating">
-          Rating
-        </option>
+      <select id="Order" onChange={handleChange}>
+        <option value="none">none</option>
+        <option value="ASC">Ascendente</option>
+        <option value="DESC">Descendente</option>
+        <option value="name">Alfabetic</option>
+        <option value="rating">Rating</option>
       </select>
     </>
   );

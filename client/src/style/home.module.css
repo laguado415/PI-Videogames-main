@@ -3,7 +3,7 @@
   height: 77%;
   margin-top: 0px;
   grid-template-columns: 1fr 1fr ;
-  grid-template-rows: 35px 55px auto 35px;
+  grid-template-rows: 35px auto auto 35px;
   grid-template-areas: "search search"
                         "options options"
                         "conteiner conteiner"

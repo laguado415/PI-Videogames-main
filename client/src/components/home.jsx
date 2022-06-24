@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import style from "../style/home.module.css";
 import Conteiner from "./conteiner.jsx";
 import Filter from "./filter";

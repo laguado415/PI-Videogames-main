@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import style from "../style/header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { find } from "../redux/acctions/actions.js";
+import useUrl from "../hooks/useUrl";
 
 export default function Header() {
   let [search, setSearch] = useState({
     find: "",
-    currentFind: "",
   });
-
+  
   let dispatch = useDispatch();
   let { url } = useSelector((state) => state);
+  let { addUrl } = useUrl(url);
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
@@ -19,10 +20,9 @@ export default function Header() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search.find) {
-      url[4] = "";
-      url[1] = `&find[name]=${search.find}`;
+      url = addUrl(search);
       dispatch(find(url));
-      setSearch({ ...search, currentFind: search.find, find: "" });
+      setSearch({ ...search, find: "" });
     }
   };
 

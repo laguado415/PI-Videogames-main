@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import OptFilter from "./optFilter";
 
 export default function Filter() {
+  let [filter, setFilter] = useState(false);
+
+  const handleClick = (e) => {
+    setFilter(!filter);
+  };
+
   return (
     <>
-      <span>filter</span>
+      <button type="button" onClick={handleClick}>
+        filter
+      </button>
+      {filter && <OptFilter />}
     </>
   );
 }
