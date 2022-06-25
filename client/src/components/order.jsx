@@ -37,7 +37,6 @@ export default function Order() {
     if (name && value && countGames) {
       if (name === "none") {
         url = resetRequest("order");
-        console.log(url);
         dispatch(order(url));
       } else {
         url = addUrl(state);

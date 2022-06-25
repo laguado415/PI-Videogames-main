@@ -1,12 +1,10 @@
 .home{
   display: grid;
-  height: 77%;
-  margin-top: 0px;
-  grid-template-columns: 1fr 1fr ;
-  grid-template-rows: 35px auto auto 35px;
+  grid-template-columns: 14vw 85vw;
+  grid-template-rows: 11vh 6vh auto 5vh;
   grid-template-areas: "search search"
-                        "options options"
-                        "conteiner conteiner"
+                        "filter order"
+                        "filter conteiner"
                         "page page";
   justify-items: center;
 }
@@ -14,18 +12,30 @@
 .conteiner{
   grid-area: conteiner;
   width: 93%;
-  background-color:  #0004 ;
-  border: 5px solid black;
-  min-height: 45vh;
+  background-color: rgba(0, 0, 0,.3);
+  border-radius: 9px;
+  min-height: 49vh;
+}
+
+.search{
+  grid-area: search;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .pagination{
   grid-area: page;
 }
 
-.options{
-  grid-area: options;
+.order{
+  grid-area: order;
   display: flex;
   width: 77%;
- justify-content: space-between;
+  justify-content: flex-end;
+}
+
+.filter{
+  grid-area: filter;
+  width: 100%;
 }

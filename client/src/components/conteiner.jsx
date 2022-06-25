@@ -9,7 +9,12 @@ export default function Container() {
   return (
     <div className={style.conteiner}>
       {games?.map((game) => (
-        <Card key={game.id} name={game.name} />
+        <Card
+          key={game.id}
+          name={game.name}
+          image={game.image}
+          genres={game.genres}
+        />
       ))}
     </div>
   );

@@ -1,7 +1,7 @@
 /*
    setea url
    addUrl recibe Object 
-   resetRequest 'request'
+   resetRequest recibe el name de request'request'
 
 */
 

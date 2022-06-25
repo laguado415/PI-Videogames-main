@@ -4,13 +4,18 @@ import Conteiner from "./conteiner.jsx";
 import Filter from "./filter";
 import Order from "./order";
 import Pagination from "./pagination";
+import Search from "./search";
 
 export default function Home() {
   return (
     <div className={style.home}>
-      <span>hola</span>
-      <div className={style.options}>
+      <div className={style.search}>
+        <Search />
+      </div>
+      <div className={style.filter}>
         <Filter />
+      </div>
+      <div className={style.order}>
         <Order />
       </div>
       <div className={style.conteiner}>

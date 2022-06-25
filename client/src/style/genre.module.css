@@ -1,0 +1,21 @@
+.genre_conteiner{
+  width: 57px;
+  height: 85px;
+}
+
+.genre_image{
+  width: 75%;
+  height: 75%;
+  border-radius: 58%;
+}
+
+.genre_image_conteiner{
+  display: flex;
+  height: 51%;
+  justify-content: center;
+  align-items: center;
+}
+
+.genre_title{
+  font-size: 12px;
+}

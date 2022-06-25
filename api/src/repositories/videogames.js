@@ -68,7 +68,7 @@ const findAndCountAll = async ({
     let where = {};
     let order = [];
     let attributes = {};
-    let include = "";
+    let include = { model: Genre };
 
     if (options) {
       let validate = Object.keys(options);
@@ -103,8 +103,6 @@ const findAndCountAll = async ({
         if (!Array.isArray(genre)) {
           genre = [genre];
         }
-        include = {};
-        include.model = Genre;
         include.where = {
           name: {
             [Op.or]: genre,

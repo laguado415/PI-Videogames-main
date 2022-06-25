@@ -29,48 +29,6 @@
   width: 42%;
 }
 
-/* .filter{
-  display: flex;
-}
-
-ul{
-  color: blue;
-  list-style: none;
-}
-
-.filter > li {
-  width: 44px;
-  color: white;
-}
-
-.filter > li > ul{
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding: 2px 4px;
-  align-items: center;
-  background-color: #ccc;
-  visibility: hidden;
-}
-
-.filter > li > form{
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding: 2px 4px;
-  align-items: center;
-  background-color: #ccc;
-  visibility: hidden;
-}
-
-.filter > li:hover > form{
-  visibility: visible;
-}
-
-
-.filter > li:hover > ul{
-   visibility: visible;
-} */
 
 
 
