@@ -11,27 +11,30 @@ export default function useUrl(url) {
     switch (request) {
       case "find":
         url.page = "";
-        return (data[request] = `&find[name]=${data[request]}`);
+        url[request] = `&find[name]=${data[request]}`;
+        break;
       case "filter":
         url.page = "";
-        return (data[request] = ``);
+        url[request].push(
+          `&filter[${data[request].name}]=${data[request].value}`
+        );
+        break;
       case "order":
         url.page = "";
         let { name, value } = data[request];
-        return (data[request] = `&order[${name}]=${value}`);
+        url[request] = `&order[${name}]=${value}`;
+        break;
       case "page":
-        return (data[request] = `&page=${data[request]}`);
+        url[request] = `&page=${data[request]}`;
+        break;
       default:
-        return;
+        data = "";
     }
   };
 
   const addUrl = (data) => {
     setRequest(data);
-    if (data.filter) {
-      return { ...url };
-    }
-    return { ...url, ...data };
+    return { ...url };
   };
   const resetRequest = (request) => {
     let defaultValues = {

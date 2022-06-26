@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { find } from "../redux/acctions/actions.js";
 import useUrl from "../hooks/useUrl";
+import style from "../style/search.module.css";
 
 export default function Search() {
   let [search, setSearch] = useState({
@@ -26,7 +27,7 @@ export default function Search() {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={style.search_conteiner}>
         <input
           type="text"
           placeholder="Search name"

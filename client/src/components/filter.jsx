@@ -1,19 +1,22 @@
-import React, { useState } from "react";
-import OptFilter from "./optFilter";
+import React from "react";
+import style from "../style/filter.module.css";
+import Origin from "./originFilter";
+import Genre from "./genreFilter";
 
 export default function Filter() {
-  let [filter, setFilter] = useState(false);
-
-  const handleClick = (e) => {
-    setFilter(!filter);
+  const handleSubmit = (e) => {
+    e?.preventDefault();
   };
 
   return (
-    <>
-      <button type="button" onClick={handleClick}>
-        filter
-      </button>
-      {filter && <OptFilter />}
-    </>
+    <div className={style.filter_conteiner}>
+      <label>
+        <b>Filter</b>
+      </label>
+      <form onSubmit={handleSubmit}>
+        <Genre />
+        <Origin />
+      </form>
+    </div>
   );
 }

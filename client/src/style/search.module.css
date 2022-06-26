@@ -1,0 +1,20 @@
+.search_conteiner{
+  display: flex;
+  width: 63%;
+  height: 35px;
+}
+
+.search_conteiner input {
+   width: 70%;
+   outline: none;
+   border: none;
+   border-bottom: 1px solid black;
+}
+
+.search_conteiner button {
+  outline: none;
+  width: 7%;
+  border: none;
+  border-bottom: 1px solid black;
+}
+

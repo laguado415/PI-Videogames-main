@@ -5,8 +5,6 @@ const videogames = {
   games: [],
   game: [],
   page: 0,
-  //--------------[0]---[1]---[2]-----[3]----[4]-------------------
-  //-----------  path  find  filter  order  page-------------------
   url: {
     patch: "http://localhost:3001/videogames?",
     find: "",
@@ -29,11 +27,11 @@ export default function reducers(state = videogames, { type, payload }) {
       };
 
     case FILTER:
-      console.log(payload.data);
       return {
         ...state,
         games: [...payload.data],
         url: payload.url,
+        countGames: payload.countGames,
         page: "",
       };
     case ORDER:

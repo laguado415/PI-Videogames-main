@@ -1,6 +1,8 @@
 .genre_conteiner{
-  width: 57px;
-  height: 85px;
+  width: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .genre_image{
@@ -11,7 +13,8 @@
 
 .genre_image_conteiner{
   display: flex;
-  height: 51%;
+  width: 57px;
+  height: 46px;
   justify-content: center;
   align-items: center;
 }

@@ -1,0 +1,7 @@
+.order_conteiner{
+    outline: none;
+    height: 25px;
+    width: 14%;
+    border: 0.1px solid black;
+    border-radius: 7px;
+}

@@ -8,7 +8,6 @@ export default function Header() {
         <div className={style.logo}>logo</div>
         <div className={style.menu}>
           <span>Home</span>
-          {"|"}
           <span>Create Game</span>
         </div>
       </nav>

@@ -57,6 +57,7 @@ const addCollectionGenre = async () => {
   }
 };
 
+//-----find all iinclude filter, order. etc
 const findAndCountAll = async ({
   find,
   filter,
@@ -110,7 +111,8 @@ const findAndCountAll = async ({
         };
       }
     }
-    return Videogame.findAndCountAll({
+
+    let query = await Videogame.findAndCountAll({
       attributes,
       order,
       include,
@@ -118,6 +120,17 @@ const findAndCountAll = async ({
       limit,
       offset,
     });
+
+    let g = await Videogame.findAll({
+      attributes,
+      order,
+      include,
+      where,
+    });
+
+    query.count = g.length;
+
+    return query;
   } catch (err) {
     throw new Error("No se pudo realizar la busqueda");
   }

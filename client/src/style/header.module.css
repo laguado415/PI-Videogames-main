@@ -1,7 +1,6 @@
 .header{
   /* 8 */
   height: 8vh;
-  width: 100vw;
   margin: auto;
   padding: 14px 0px;
   background-color: black;
@@ -19,14 +18,15 @@
 
 .nav{  
   display: flex;
-  width: 60%;
+  width: 81%;
   height: auto;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .menu{
   display: inline-flex;
-  width: 42%;
+  width: 25%;
+  justify-content: space-evenly;
 }
 
 

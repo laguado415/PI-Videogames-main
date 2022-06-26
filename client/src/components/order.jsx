@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useUrl from "../hooks/useUrl";
 import { order } from "../redux/acctions/actions";
+import Style from "../style/order.module.css"
 
 export default function Order() {
   let [state, setState] = useState({
@@ -47,7 +48,7 @@ export default function Order() {
 
   return (
     <>
-      <select id="Order" onChange={handleChange}>
+      <select id="Order" onChange={handleChange} className={Style.order_conteiner}>
         <option value="none">none</option>
         <option value="ASC">Ascendente</option>
         <option value="DESC">Descendente</option>

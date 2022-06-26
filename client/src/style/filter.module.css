@@ -1,0 +1,26 @@
+.filter_conteiner{
+   background-color: #ccc;
+   width: 76%;
+   margin: 0px auto;
+   padding: 11px;
+   border-radius: 46px;
+}
+
+.filter_conteiner  form  ul {
+  list-style: none;
+  margin: 7px;
+}
+
+.filter_conteiner form ul li {
+   display: flex;
+   margin: 5px;
+   font-size: 15px;
+   align-items: center;
+   width: 147px;
+}
+
+.filter_conteiner form ul > li > label {
+    margin: 7px;
+    text-align: left;
+    font-weight: bold;
+}

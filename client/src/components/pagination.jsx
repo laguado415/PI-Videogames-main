@@ -7,7 +7,7 @@ export default function Pagination() {
   let dispatch = useDispatch();
   let { url, page, countGames: count } = useSelector((state) => state);
   let { addUrl } = useUrl(url);
-
+  console.log(count);
   const handleClick = (e) => {
     if (e.target.name === "next") {
       // multiplica la pagina por el size permitido  y lo compara con la cantidada de elementos
@@ -15,7 +15,6 @@ export default function Pagination() {
       if ((page + 1) * 15 < count) {
         page++;
         url = addUrl({ page });
-        console.log(url);
         dispatch(pagination(url, page));
       }
     } else {

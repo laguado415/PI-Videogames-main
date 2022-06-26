@@ -19,9 +19,12 @@ export const find = (url) => {
 
 export const filter = (url) => {
   return async (dispatch) => {
-    return axios(url.join(""))
+    return axios(Object.values(url).flat().join(""))
       .then(({ data }) =>
-        dispatch({ type: FILTER, payload: { data: data.rows, url: url } })
+        dispatch({
+          type: FILTER,
+          payload: { data: data.rows, url: url, countGames: data.count },
+        })
       )
       .catch(({ response }) => console.log(response.data));
   };

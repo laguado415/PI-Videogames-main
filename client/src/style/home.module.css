@@ -1,27 +1,29 @@
 .home{
   display: grid;
-  grid-template-columns: 14vw 85vw;
+  grid-template-columns: 32vw 68vw; 
   grid-template-rows: 11vh 6vh auto 5vh;
   grid-template-areas: "search search"
-                        "filter order"
+                        "order order"
                         "filter conteiner"
-                        "page page";
+                        "space page";
   justify-items: center;
+  margin-bottom: 37px;
 }
 
 .conteiner{
   grid-area: conteiner;
-  width: 93%;
+  width: 89%;
   background-color: rgba(0, 0, 0,.3);
-  border-radius: 9px;
+  border-radius: 48px;
   min-height: 49vh;
 }
 
 .search{
   grid-area: search;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: flex-end;
+  width: 74%;
 }
 
 .pagination{
@@ -29,13 +31,16 @@
 }
 
 .order{
-  grid-area: order;
-  display: flex;
-  width: 77%;
-  justify-content: flex-end;
+    grid-area: order;
+    display: flex;
+    width: 90%;
+    height: 25px;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+    align-items: flex-end;
 }
 
 .filter{
   grid-area: filter;
-  width: 100%;
+  width: 80%;
 }
