@@ -1,15 +1,19 @@
 import React from "react";
+import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
+import { IconContext } from "react-icons/lib";
 import { useDispatch, useSelector } from "react-redux";
 import useUrl from "../hooks/useUrl";
 import { pagination } from "../redux/acctions/actions";
+import style from "../style/pagination.module.css";
 
 export default function Pagination() {
   let dispatch = useDispatch();
   let { url, page, countGames: count } = useSelector((state) => state);
   let { addUrl } = useUrl(url);
-  console.log(count);
+
   const handleClick = (e) => {
-    if (e.target.name === "next") {
+    let { id } = e.target.id ? e.target : e.target.viewportElement;
+    if (id === "next") {
       // multiplica la pagina por el size permitido  y lo compara con la cantidada de elementos
       // si el numero de elemento es menor al resultado no entra
       if ((page + 1) * 15 < count) {
@@ -18,7 +22,7 @@ export default function Pagination() {
         dispatch(pagination(url, page));
       }
     } else {
-      if (page > 0) {
+      if (page > 0 && id === "previus") {
         page--;
         url = addUrl({ page });
         dispatch(pagination(url, page));
@@ -28,12 +32,28 @@ export default function Pagination() {
 
   return (
     <>
-      <button type="button" name="previus" onClick={handleClick}>
-        anteriors
-      </button>
-      <button type="button" name="next" onClick={handleClick}>
-        siguiente
-      </button>
+      <IconContext.Provider value={{ className: style.pagination_icon }}>
+        <div className={style.pagination_btn_conteiner}>
+          <button
+            className={style.pagination_btn}
+            type="button"
+            id="previus"
+            onClick={handleClick}
+          >
+            <FaChevronCircleLeft id="previus" />
+          </button>
+        </div>
+        <div className={style.pagination_btn_conteiner}>
+          <button
+            className={style.pagination_btn}
+            type="button"
+            id="next"
+            onClick={handleClick}
+          >
+            <FaChevronCircleRight id="next" />
+          </button>
+        </div>
+      </IconContext.Provider>
     </>
   );
 }

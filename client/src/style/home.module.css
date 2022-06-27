@@ -1,7 +1,7 @@
 .home{
   display: grid;
   grid-template-columns: 32vw 68vw; 
-  grid-template-rows: 11vh 6vh auto 5vh;
+  grid-template-rows: 11vh 6vh auto 10vh;
   grid-template-areas: "search search"
                         "order order"
                         "filter conteiner"
@@ -27,7 +27,11 @@
 }
 
 .pagination{
-  grid-area: page;
+    grid-area: page;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 19%;
 }
 
 .order{

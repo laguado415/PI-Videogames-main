@@ -3,32 +3,44 @@ import { useDispatch, useSelector } from "react-redux";
 import useUrl from "../hooks/useUrl";
 import { filter } from "../redux/acctions/actions";
 
-export default function Origin() {
+export default function OriginFilter() {
   let [origin, setOrigin] = useState({
     filter: {
       name: "",
       value: "",
-      checked: false,
+    },
+  });
+
+  let [previusState, setPrevius] = useState({
+    filter: {
+      name: "",
+      value: "",
     },
   });
 
   let dispatch = useDispatch();
-  let { countGames, url } = useSelector((state) => state);
-  let { addUrl } = useUrl(url);
+  let { countGames, url, errorMessage } = useSelector((state) => state);
+  let { addUrl, resetRequest } = useUrl(url);
 
   useEffect(() => {
     handleSubmit();
   }, [origin]);
 
   const handleClickOrigin = (e) => {
-    let { name, value, checked } = e.target;
-    setOrigin({ filter: { name: name, value: value, checked: checked } });
+    let { name, value } = e.target;
+    origin.filter.name && setPrevius({ ...origin });
+    setOrigin({ filter: { name: name, value: value } });
   };
 
   const handleSubmit = (e) => {
     e?.preventDefault();
-    if (countGames) {
-      url = addUrl(origin);
+    if (countGames || errorMessage) {
+      if (previusState.filter.value) {
+        url = resetRequest("filter", previusState);
+      }
+      if (origin.filter.value) {
+        url = addUrl(origin);
+      }
       dispatch(filter(url));
     }
   };
@@ -41,7 +53,17 @@ export default function Origin() {
           <input
             onChange={handleClickOrigin}
             name="added"
-            type="checkbox"
+            type="radio"
+            id="All"
+            value=""
+          />
+          <label htmlFor="All">All</label>
+        </li>
+        <li>
+          <input
+            onChange={handleClickOrigin}
+            name="added"
+            type="radio"
             id="Original"
             value="false"
           />
@@ -51,7 +73,7 @@ export default function Origin() {
           <input
             onChange={handleClickOrigin}
             name="added"
-            type="checkbox"
+            type="radio"
             id="Created"
             value="true"
           />

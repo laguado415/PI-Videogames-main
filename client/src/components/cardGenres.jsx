@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../style/genre.module.css";
 
-export default function Genre({ image, name }) {
+export default function CardGenre({ image, name }) {
   return (
     <div className={style.genre_conteiner}>
       <div className={style.genre_image_conteiner}>

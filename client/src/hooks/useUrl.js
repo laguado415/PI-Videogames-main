@@ -1,8 +1,8 @@
 /*
    setea url
    addUrl recibe Object 
-   resetRequest recibe el name de request'request'
-
+   resetRequest recibe el name de request'request', y data (para el filtro)
+   resetRequest  request 'All' elimina todos los filtros
 */
 
 export default function useUrl(url) {
@@ -36,15 +36,30 @@ export default function useUrl(url) {
     setRequest(data);
     return { ...url };
   };
-  const resetRequest = (request) => {
+
+  const resetRequest = (request, data) => {
     let defaultValues = {
       find: "",
       filter: [],
       order: "",
-      page: "",
     };
+
+    if (request === "All") {
+      return { ...url, filter: [] };
+    }
+
+    if (request === "filter") {
+      let { name, value } = data.filter;
+      let filter = [...url.filter];
+      let validateString = `&filter[${name}]=${value}`;
+      if (filter.includes(validateString)) {
+        url.filter = filter.filter((filter) => filter !== validateString);
+        return { ...url, page: "" };
+      }
+    }
+
     if (defaultValues.hasOwnProperty(request)) {
-      return { ...url, [request]: defaultValues[request] };
+      return { ...url, [request]: defaultValues[request], page: "" };
     }
   };
 

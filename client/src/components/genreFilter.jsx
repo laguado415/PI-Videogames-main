@@ -3,32 +3,38 @@ import { useDispatch, useSelector } from "react-redux";
 import useUrl from "../hooks/useUrl";
 import { filter } from "../redux/acctions/actions";
 
-export default function Genre() {
+export default function GenreFilter() {
   let [genre, setGenre] = useState({
     filter: {
       name: "",
       value: "",
+      checked: false,
     },
   });
 
   let dispatch = useDispatch();
-  let { countGames, url } = useSelector((state) => state);
-  let { addUrl } = useUrl(url);
+  let { countGames, url, errorMessage } = useSelector((state) => state);
+  let { addUrl, resetRequest } = useUrl(url);
 
   useEffect(() => {
     handleSubmit();
   }, [genre]);
 
   const handleClick = (e) => {
-    let { name, value } = e.target;
-    setGenre({ filter: { name: name, value: value } });
+    let { name, value, checked } = e.target;
+    setGenre({ filter: { name: name, value: value, checked: checked } });
   };
 
-  const handleSubmit = (e) => {
-    e?.preventDefault();
-    if (countGames) {
-      url = addUrl(genre);
-      dispatch(filter(url));
+  const handleSubmit = () => {
+    if (countGames || errorMessage) {
+      if (genre.filter.checked) {
+        url = addUrl(genre);
+        dispatch(filter(url));
+      } else {
+        // resetRequest "request",data; data(solo en caso de ser filter)
+        url = resetRequest("filter", genre);
+        dispatch(filter(url));
+      }
     }
   };
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useUrl from "../hooks/useUrl";
 import { order } from "../redux/acctions/actions";
-import Style from "../style/order.module.css"
+import Style from "../style/order.module.css";
 
 export default function Order() {
   let [state, setState] = useState({
@@ -48,8 +48,12 @@ export default function Order() {
 
   return (
     <>
-      <select id="Order" onChange={handleChange} className={Style.order_conteiner}>
-        <option value="none">none</option>
+      <select
+        id="Order"
+        onChange={handleChange}
+        className={Style.order_conteiner}
+      >
+        <option value="none">All</option>
         <option value="ASC">Ascendente</option>
         <option value="DESC">Descendente</option>
         <option value="name">Alfabetic</option>

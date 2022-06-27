@@ -1,4 +1,4 @@
-import { FIND, ORDER, FILTER, PAGINATION } from "../acctions/actions";
+import { FIND, ORDER, FILTER, PAGINATION, ERROR } from "../acctions/actions";
 
 const videogames = {
   countGames: 0,
@@ -12,6 +12,7 @@ const videogames = {
     order: "",
     page: "",
   },
+  errorMessage: "",
 };
 
 export default function reducers(state = videogames, { type, payload }) {
@@ -24,6 +25,7 @@ export default function reducers(state = videogames, { type, payload }) {
         url: payload.url,
         countGames: payload.countGames,
         page: "",
+        errorMessage: "",
       };
 
     case FILTER:
@@ -33,6 +35,7 @@ export default function reducers(state = videogames, { type, payload }) {
         url: payload.url,
         countGames: payload.countGames,
         page: "",
+        errorMessage: "",
       };
     case ORDER:
       return {
@@ -47,6 +50,14 @@ export default function reducers(state = videogames, { type, payload }) {
         games: [...payload.data],
         url: payload.url,
         page: payload.page,
+      };
+    case ERROR:
+      return {
+        ...state,
+        countGames: 0,
+        games: [],
+        page: 0,
+        errorMessage: payload,
       };
     default:
       return state;

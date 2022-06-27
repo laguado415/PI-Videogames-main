@@ -3,18 +3,22 @@ export const FIND = "find";
 export const ORDER = "order";
 export const FILTER = "filter";
 export const PAGINATION = "pagination";
+export const ERROR = "error";
 
-export const find = (url) => {
-  return async (dispatch) => {
-    return axios(Object.values(url).flat().join(""))
-      .then(({ data }) =>
-        dispatch({
-          type: FIND,
-          payload: { data: data.rows, url: url, countGames: data.count },
-        })
-      )
-      .catch(({ response }) => console.log(response.data));
-  };
+export const find = (url) => async (dispatch) => {
+  return axios(Object.values(url).flat().join(""))
+    .then(({ data }) =>
+      dispatch({
+        type: FIND,
+        payload: { data: data.rows, url: url, countGames: data.count },
+      })
+    )
+    .catch(({ response }) =>
+      dispatch({
+        type: ERROR,
+        payload: response.data,
+      })
+    );
 };
 
 export const filter = (url) => {
@@ -26,7 +30,12 @@ export const filter = (url) => {
           payload: { data: data.rows, url: url, countGames: data.count },
         })
       )
-      .catch(({ response }) => console.log(response.data));
+      .catch(({ response }) =>
+        dispatch({
+          type: ERROR,
+          payload: response.data,
+        })
+      );
   };
 };
 
