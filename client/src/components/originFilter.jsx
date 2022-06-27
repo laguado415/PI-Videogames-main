@@ -47,8 +47,8 @@ export default function OriginFilter() {
 
   return (
     <>
+      <h4>Origin</h4>
       <ul>
-        <label>Origin</label>
         <li>
           <input
             onChange={handleClickOrigin}

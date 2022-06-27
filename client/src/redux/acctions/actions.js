@@ -16,7 +16,7 @@ export const find = (url) => async (dispatch) => {
     .catch(({ response }) =>
       dispatch({
         type: ERROR,
-        payload: response.data,
+        payload: true,
       })
     );
 };
@@ -33,7 +33,7 @@ export const filter = (url) => {
       .catch(({ response }) =>
         dispatch({
           type: ERROR,
-          payload: response.data,
+          payload: true,
         })
       );
   };

@@ -5,6 +5,8 @@ import GenreFilter from "./genreFilter";
 import useUrl from "../hooks/useUrl";
 import { useDispatch, useSelector } from "react-redux";
 import { find } from "../redux/acctions/actions.js";
+import { FiTrash2 } from "react-icons/fi";
+import { IconContext } from "react-icons";
 
 export default function Filter() {
   let dispatch = useDispatch();
@@ -29,13 +31,23 @@ export default function Filter() {
 
   return (
     <div className={style.filter_conteiner}>
-      <label>
-        <b>Filter</b>
-      </label>
-      <form onSubmit={handleSubmit}>
-        <button type="submit">Clear</button>
-        <GenreFilter />
-        <OriginFilter />
+      <form onSubmit={handleSubmit} className={style.filter_form}>
+        <h2 className={style.filter_title}>
+          <b>Filter</b>
+        </h2>
+        <button type="submit" className={style.filter_btn_clear}>
+          <IconContext.Provider
+            value={{ className: style.filter_btn_icon_clear }}
+          >
+            <FiTrash2 />
+          </IconContext.Provider>
+        </button>
+        <div className={style.filter_genre_conteiner}>
+          <GenreFilter />
+        </div>
+        <div className={style.filter_origin_conteiner}>
+          <OriginFilter />
+        </div>
       </form>
     </div>
   );

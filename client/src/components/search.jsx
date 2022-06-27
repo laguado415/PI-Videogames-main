@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { find } from "../redux/acctions/actions.js";
 import useUrl from "../hooks/useUrl";
 import style from "../style/search.module.css";
+import { BiSearch } from "react-icons/bi";
+import { IconContext } from "react-icons";
 
 export default function Search() {
   let [search, setSearch] = useState({
@@ -35,8 +37,14 @@ export default function Search() {
           value={search.find}
           onChange={handleChange}
         />
-        <button type="submit" onSubmit={handleSubmit}>
-          Buscar
+        <button
+          type="submit"
+          onSubmit={handleSubmit}
+          className={style.search_btn}
+        >
+          <IconContext.Provider value={{ className: style.search_btn_icon }}>
+            <BiSearch />
+          </IconContext.Provider>
         </button>
       </form>
     </>

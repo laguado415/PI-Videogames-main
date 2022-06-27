@@ -39,8 +39,8 @@ export default function GenreFilter() {
   };
   return (
     <>
+      <h4>Genres</h4>
       <ul>
-        <label>Genres</label>
         <li>
           <input
             onChange={handleClick}

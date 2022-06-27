@@ -1,4 +1,5 @@
 import { FIND, ORDER, FILTER, PAGINATION, ERROR } from "../acctions/actions";
+import imageNotFount from "../../image/NOT FOUND.gif";
 
 const videogames = {
   countGames: 0,
@@ -12,7 +13,10 @@ const videogames = {
     order: "",
     page: "",
   },
-  errorMessage: "",
+  errorMessage: {
+    image: imageNotFount,
+    value: false,
+  },
 };
 
 export default function reducers(state = videogames, { type, payload }) {
@@ -25,7 +29,7 @@ export default function reducers(state = videogames, { type, payload }) {
         url: payload.url,
         countGames: payload.countGames,
         page: "",
-        errorMessage: "",
+        errorMessage: { ...state.errorMessage, value: false },
       };
 
     case FILTER:
@@ -35,7 +39,7 @@ export default function reducers(state = videogames, { type, payload }) {
         url: payload.url,
         countGames: payload.countGames,
         page: "",
-        errorMessage: "",
+        errorMessage: { ...state.errorMessage, value: false },
       };
     case ORDER:
       return {
@@ -57,7 +61,7 @@ export default function reducers(state = videogames, { type, payload }) {
         countGames: 0,
         games: [],
         page: 0,
-        errorMessage: payload,
+        errorMessage: { ...state.errorMessage, value: payload },
       };
     default:
       return state;

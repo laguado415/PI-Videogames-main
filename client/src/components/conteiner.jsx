@@ -5,10 +5,11 @@ import Card from "./card";
 
 export default function Container() {
   let { games, errorMessage } = useSelector((state) => state);
+  console.log(games[0]?.name);
 
   return (
     <div className={style.conteiner}>
-      {!errorMessage ? (
+      {!errorMessage.value ? (
         games?.map((game) => (
           <Card
             key={game.id}
@@ -18,7 +19,7 @@ export default function Container() {
           />
         ))
       ) : (
-        <p> {errorMessage} </p>
+        <img src={errorMessage.image} alt="NOT FOUNT" />
       )}
     </div>
   );
