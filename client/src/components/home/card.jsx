@@ -1,7 +1,7 @@
 import React from "react";
-import style from "../style/card.module.css";
+import style from "../../style/home/card.module.css";
 import CardGenre from "./cardGenres";
-import imageError from "../image/imagen caida.gif";
+import imageError from "../../image/imagen caida.gif";
 
 export default function Card({ name, image, genres }) {
   return (

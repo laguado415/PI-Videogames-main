@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
+const videogame = require("../controllers/videogame");
 const { Op, conn: sequelize, Videogame, Genre } = require("../db");
 const { generatorGenre } = require("../repositories/genres");
 
@@ -10,25 +11,32 @@ const formatGame = async () => {
     let collection = [];
     let request = await axios(`https://api.rawg.io/api/games${API_KEY}`);
     request = request.data;
+    let i = 0;
     while (request.next && collection.length < 5) {
-      collection.push(
-        request.results.map((game) => {
-          return {
-            name: game.name,
-            platforms: { ...game.platforms },
-            rating: game.rating,
-            ratings: { ...game.ratings },
-            image: game.background_image,
-            released: game.released,
-            description: `https://api.rawg.io/api/games/${game.id}${API_KEY}`,
-            genreJson: game.genres.map((genre) => genre.name),
-          };
-        })
-      );
+      let games = [];
+      for (let game of request.results) {
+        game = await axios(
+          `https://api.rawg.io/api/games/${game.id}${API_KEY}`
+        );
+        game = game.data;
+        games.push({
+          name: game.name,
+          platforms: game.parent_platforms.map((game) => game.platform.name),
+          rating: game.rating,
+          ratings: { ...game.ratings },
+          image: game.background_image,
+          released: game.released,
+          description: game.description_raw,
+          genreJson: game.genres.map((genre) => genre.name),
+        });
+      }
+      collection.push(games);
+      console.log(collection.length);
       request = await axios(request.next);
       request = request.data;
+      console.log(!request.next);
     }
-
+    //para no recorrer 5 posiciones si no pasar una vez el metodo bulkCreate()
     collection = collection.flat();
 
     await Videogame.bulkCreate(collection);
@@ -136,6 +144,7 @@ const findAndCountAll = async ({
   }
 };
 
+//-------find By ID--------------------------------------
 const findById = async (id) => {
   try {
     let videogame = await Videogame.findByPk(id, {
@@ -154,9 +163,36 @@ const findById = async (id) => {
   }
 };
 
+//-------post game ---------------------------
+const addGame = async (data) => {
+  try {
+    let { name, description, image, released, rating, genres, platforms } =
+      data;
+    if (!name || !description || !genres || !platforms) {
+      throw new Error("Faltan datos para la solicitud");
+    }
+
+    await Videogame.create({
+      name,
+      description,
+      image,
+      released,
+      rating,
+      platforms,
+    })
+      .then((game) => game.addGenres(genres))
+      .catch(() => {
+        throw new Error("No se ha podido agregar el game");
+      });
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   formatGame,
   addCollectionGenre,
   findAndCountAll,
   findById,
+  addGame,
 };

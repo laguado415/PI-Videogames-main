@@ -1,7 +1,8 @@
 .card{
   display: flex;
   flex-direction: column;
-  background-color: #0008;
+  background-color: #fff3;
+  color: #fff;
   align-items: center;
   min-height: 264px;
   border-radius: 39px;
@@ -28,6 +29,6 @@
 }
 
 .card_image_conteiner{
-  height: 60%;
   width: 100%;
+  min-height: 160px;
 }

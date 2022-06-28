@@ -1,10 +1,10 @@
 import React from "react";
-import style from "../style/home.module.css";
+import style from "../../style/home/home.module.css";
 import Conteiner from "./conteiner.jsx";
-import Filter from "./filter";
+import Filter from "./filters/filter";
 import Order from "./order";
 import Pagination from "./pagination";
-import Search from "./search";
+import Search from "../home/search.jsx";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
         <Order />
       </div>
       <div className={style.conteiner}>
-        <Conteiner />
+          <Conteiner />
       </div>
       <div className={style.pagination}>
         <Pagination />

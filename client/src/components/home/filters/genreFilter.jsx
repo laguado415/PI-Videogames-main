@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useUrl from "../hooks/useUrl";
-import { filter } from "../redux/acctions/actions";
+import useUrl from "../../../hooks/useUrl";
+import { filter } from "../../../redux/acctions/actions";
 
 export default function GenreFilter() {
   let [genre, setGenre] = useState({
@@ -26,7 +26,7 @@ export default function GenreFilter() {
   };
 
   const handleSubmit = () => {
-    if (countGames || errorMessage) {
+    if (countGames || errorMessage.value) {
       if (genre.filter.checked) {
         url = addUrl(genre);
         dispatch(filter(url));

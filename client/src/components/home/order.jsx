@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useUrl from "../hooks/useUrl";
-import { order } from "../redux/acctions/actions";
-import Style from "../style/order.module.css";
+import useUrl from "../../hooks/useUrl";
+import { order } from "../../redux/acctions/actions";
+import Style from "../../style/home/order.module.css";
 
 export default function Order() {
   let [state, setState] = useState({

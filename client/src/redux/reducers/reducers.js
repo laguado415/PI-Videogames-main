@@ -23,6 +23,7 @@ export default function reducers(state = videogames, { type, payload }) {
   switch (type) {
     case FIND:
       //---payload { data: [{},{},{},{}] , url: url}------------------
+      console.log("find");
       return {
         ...state,
         games: [...payload.data],
@@ -33,6 +34,7 @@ export default function reducers(state = videogames, { type, payload }) {
       };
 
     case FILTER:
+      console.log("filter");
       return {
         ...state,
         games: [...payload.data],
@@ -42,6 +44,7 @@ export default function reducers(state = videogames, { type, payload }) {
         errorMessage: { ...state.errorMessage, value: false },
       };
     case ORDER:
+      console.log("order");
       return {
         ...state,
         games: [...payload.data],
@@ -49,6 +52,7 @@ export default function reducers(state = videogames, { type, payload }) {
         page: "",
       };
     case PAGINATION:
+      console.log("pag");
       return {
         ...state,
         games: [...payload.data],

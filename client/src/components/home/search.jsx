@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { find } from "../redux/acctions/actions.js";
-import useUrl from "../hooks/useUrl";
-import style from "../style/search.module.css";
+import { find } from "../../redux/acctions/actions.js";
+import useUrl from "../../hooks/useUrl";
+import style from "../../style/home/search.module.css";
 import { BiSearch } from "react-icons/bi";
 import { IconContext } from "react-icons";
 
@@ -14,6 +14,11 @@ export default function Search() {
   let dispatch = useDispatch();
   let { url } = useSelector((state) => state);
   let { addUrl } = useUrl(url);
+
+  //renderiza solo la primero vez
+  useEffect(() => {
+    dispatch(find(url));
+  }, []);
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });

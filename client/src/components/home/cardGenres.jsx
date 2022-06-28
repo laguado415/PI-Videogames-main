@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../style/genre.module.css";
+import style from "../../style/home/genre.module.css";
 
 export default function CardGenre({ image, name }) {
   return (

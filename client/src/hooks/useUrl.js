@@ -45,7 +45,7 @@ export default function useUrl(url) {
     };
 
     if (request === "All") {
-      return { ...url, filter: [] };
+      return { ...url, filter: [], page: "" };
     }
 
     if (request === "filter") {

@@ -5,3 +5,7 @@
   width: 100%;
   padding: 20px;
 }
+
+button, input[type='checkbox'],input[type='radio'],select{
+  cursor: pointer;
+}

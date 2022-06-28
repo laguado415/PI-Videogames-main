@@ -42,4 +42,26 @@ module.exports = {
       return res.status(404).json(err.message);
     }
   },
+  postGame: async (req, res) => {
+    try {
+      if (!Object.entries(req.body).length) {
+        throw new Error(
+          "se requieren dataos para agregar game por favor suministrarlos"
+        );
+      }
+      let data = {
+        name: "",
+        description: "",
+        image: "",
+        released: "",
+        rating: "",
+        genres: "",
+        platforms: "",
+      };
+      await repoVideoGame.addGame({ ...data, ...req.body });
+      return res.json("Game se agrego correctamente");
+    } catch (err) {
+      return res.status(404).json(err.message);
+    }
+  },
 };

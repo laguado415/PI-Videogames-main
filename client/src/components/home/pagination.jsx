@@ -2,14 +2,18 @@ import React from "react";
 import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { useDispatch, useSelector } from "react-redux";
-import useUrl from "../hooks/useUrl";
-import { pagination } from "../redux/acctions/actions";
-import style from "../style/pagination.module.css";
+import useUrl from "../../hooks/useUrl";
+import { pagination } from "../../redux/acctions/actions";
+import style from "../../style/home/pagination.module.css";
 
 export default function Pagination() {
   let dispatch = useDispatch();
   let { url, page, countGames: count } = useSelector((state) => state);
   let { addUrl } = useUrl(url);
+
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+  };
 
   const handleClick = (e) => {
     let { id } = e.target.id ? e.target : e.target.viewportElement;
@@ -20,12 +24,14 @@ export default function Pagination() {
         page++;
         url = addUrl({ page });
         dispatch(pagination(url, page));
+        scrollTop();
       }
     } else {
       if (page > 0 && id === "previus") {
         page--;
         url = addUrl({ page });
         dispatch(pagination(url, page));
+        scrollTop();
       }
     }
   };

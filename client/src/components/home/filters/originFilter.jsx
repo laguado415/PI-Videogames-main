@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useUrl from "../hooks/useUrl";
-import { filter } from "../redux/acctions/actions";
+import useUrl from "../../../hooks/useUrl";
+import { filter } from "../../../redux/acctions/actions";
 
 export default function OriginFilter() {
   let [origin, setOrigin] = useState({
@@ -32,9 +32,8 @@ export default function OriginFilter() {
     setOrigin({ filter: { name: name, value: value } });
   };
 
-  const handleSubmit = (e) => {
-    e?.preventDefault();
-    if (countGames || errorMessage) {
+  const handleSubmit = () => {
+    if (countGames || errorMessage.value) {
       if (previusState.filter.value) {
         url = resetRequest("filter", previusState);
       }

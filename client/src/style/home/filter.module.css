@@ -8,19 +8,28 @@
 
 .filter_form{
    display: grid;
-   grid-template-columns: 1fr .7fr;
+   grid-template-columns: 1fr .7fr; 
    grid-template-areas: "title clear"
-                        "genre genre"
-                       "origin origin";
+                        "filter filter"
+                       "filter filter";
    justify-items: flex-end;
+   align-items: center;
 }
 
-.filter_genre_conteiner{
-   grid-area: genre;
+.filter_form > div {
+   grid-area: filter;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   width: 100%;
+   height: 100%;
 }
 
-.filter_origin_conteiner{
-   grid-area: origin;
+.filter_form > div > div{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
 }
 
 .filter_btn_clear{
@@ -40,6 +49,7 @@
 .filter_tilte{
    grid-area: title;
 }
+
 
 .filter_conteiner  form  ul {
   display: flex;
@@ -61,4 +71,5 @@
     margin: 5px;
     text-align: left;
     font-weight: bold;
+    cursor: pointer;
 }

@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/header.jsx";
 import Footer from "./components/footer.jsx";
-import Home from "./components/home.jsx";
+import Home from "./components/home/home.jsx";
 import "./App.css";
+import Create from "./components/create/create.jsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/create" element={<Create />} />
       </Routes>
       <Footer />
     </div>
