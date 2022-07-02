@@ -1,13 +1,12 @@
 import React from "react";
 import style from "../../style/home/card.module.css";
 import CardGenre from "./cardGenres";
-import imageError from "../../image/imagen caida.gif";
 
 export default function Card({ name, image, genres }) {
   return (
     <div className={style.card}>
       <div className={style.card_image_conteiner}>
-        <img className={style.card_image} src={image} alt={imageError} />
+        <img className={style.card_image} src={image} alt={"IMAGE_CARD"} />
       </div>
       <div className={style.card_title}>
         <label>

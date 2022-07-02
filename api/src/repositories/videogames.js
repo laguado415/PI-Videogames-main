@@ -11,14 +11,14 @@ const formatGame = async () => {
     let collection = [];
     let request = await axios(`https://api.rawg.io/api/games${API_KEY}`);
     request = request.data;
-    let i = 0;
-    while (request.next && collection.length < 5) {
+    // let i = 0;
+    while (request.next && collection.length < 10) {
       let games = [];
       for (let game of request.results) {
-        game = await axios(
-          `https://api.rawg.io/api/games/${game.id}${API_KEY}`
-        );
-        game = game.data;
+        // game = await axios(
+        //   `https://api.rawg.io/api/games/${game.id}${API_KEY}`
+        // );
+        // game = game.data;
         games.push({
           name: game.name,
           platforms: game.parent_platforms.map((game) => game.platform.name),
@@ -26,7 +26,7 @@ const formatGame = async () => {
           ratings: { ...game.ratings },
           image: game.background_image,
           released: game.released,
-          description: game.description_raw,
+          description: `https://api.rawg.io/api/games/${game.id}${API_KEY}`,
           genreJson: game.genres.map((genre) => genre.name),
         });
       }
@@ -172,6 +172,16 @@ const addGame = async (data) => {
       throw new Error("Faltan datos para la solicitud");
     }
 
+    let find = await Videogame.findOne({
+      where: {
+        name: name,
+      },
+    });
+
+    if (find) {
+      throw new Error("El game ya existe");
+    }
+
     await Videogame.create({
       name,
       description,
@@ -179,6 +189,7 @@ const addGame = async (data) => {
       released,
       rating,
       platforms,
+      added: true,
     })
       .then((game) => game.addGenres(genres))
       .catch(() => {

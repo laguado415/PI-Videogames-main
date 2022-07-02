@@ -19,29 +19,27 @@ export default function OriginFilter() {
   });
 
   let dispatch = useDispatch();
-  let { countGames, url, errorMessage } = useSelector((state) => state);
+  let { url } = useSelector((state) => state);
   let { addUrl, resetRequest } = useUrl(url);
 
   useEffect(() => {
+    setPrevius({ ...origin });
     handleSubmit();
   }, [origin]);
 
   const handleClickOrigin = (e) => {
     let { name, value } = e.target;
-    origin.filter.name && setPrevius({ ...origin });
     setOrigin({ filter: { name: name, value: value } });
   };
 
   const handleSubmit = () => {
-    if (countGames || errorMessage.value) {
-      if (previusState.filter.value) {
-        url = resetRequest("filter", previusState);
-      }
-      if (origin.filter.value) {
-        url = addUrl(origin);
-      }
-      dispatch(filter(url));
+    if (previusState.filter.value) {
+      url = resetRequest("filter", previusState);
     }
+    if (origin.filter.value) {
+      url = addUrl(origin);
+    }
+    dispatch(filter(url));
   };
 
   return (

@@ -38,8 +38,15 @@
   display: inline-flex;
   width: 25%;
   justify-content: space-evenly;
+  font-size: 20px;
+    font-weight: bold;
 }
 
+.menu a , .menu a label{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 

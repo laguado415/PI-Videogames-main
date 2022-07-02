@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "../../../style/home/filter.module.css";
 import OriginFilter from "./originFilter";
 import GenreFilter from "./genreFilter";
@@ -13,12 +13,16 @@ export default function Filter() {
   let { url } = useSelector((state) => state);
   let { resetRequest } = useUrl(url);
 
+  useEffect(() => {
+    handleSubmit();
+  }, []);
+
   const handleSubmit = (e) => {
     e?.preventDefault();
     url = resetRequest("All");
     resetCheckFilters();
     dispatch(find(url));
-    console.log('clear');
+    console.log("clear");
   };
 
   const resetCheckFilters = () => {

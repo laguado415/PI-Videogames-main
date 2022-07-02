@@ -1,10 +1,20 @@
-import { FIND, ORDER, FILTER, PAGINATION, ERROR } from "../acctions/actions";
+import {
+  FIND,
+  ORDER,
+  FILTER,
+  PAGINATION,
+  GENRES,
+  MESSAGEFORM,
+  ERROR,
+  ERRORFORM,
+} from "../acctions/actions";
 import imageNotFount from "../../image/NOT FOUND.gif";
 
 const videogames = {
   countGames: 0,
   games: [],
   game: [],
+  genres: [],
   page: 0,
   url: {
     patch: "http://localhost:3001/videogames?",
@@ -13,8 +23,16 @@ const videogames = {
     order: "",
     page: "",
   },
+  messageForm: {
+    message: "",
+    value: false,
+  },
   errorMessage: {
     image: imageNotFount,
+    value: false,
+  },
+  errorForm: {
+    message: "",
     value: false,
   },
 };
@@ -32,7 +50,6 @@ export default function reducers(state = videogames, { type, payload }) {
         page: "",
         errorMessage: { ...state.errorMessage, value: false },
       };
-
     case FILTER:
       console.log("filter");
       return {
@@ -58,6 +75,39 @@ export default function reducers(state = videogames, { type, payload }) {
         games: [...payload.data],
         url: payload.url,
         page: payload.page,
+      };
+    case GENRES:
+      return {
+        ...state,
+        genres: [...payload],
+        errorForm: {
+          message: "",
+          value: false,
+        },
+      };
+    case MESSAGEFORM:
+      return {
+        ...state,
+        messageForm: {
+          message: payload,
+          value: true,
+        },
+        errorForm: {
+          message: "",
+          value: false,
+        },
+      };
+    case ERRORFORM:
+      return {
+        ...state,
+        errorForm: {
+          message: payload,
+          value: true,
+        },
+        messageForm: {
+          message: "",
+          value: false,
+        },
       };
     case ERROR:
       return {

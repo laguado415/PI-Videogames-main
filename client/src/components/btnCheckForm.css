@@ -1,0 +1,41 @@
+.BtnPLataform_conteiner_check{
+  width: 81px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.BtnPLataform_image_Check{
+  width: 77%;
+  transition: .2s all;
+}
+
+.BtnPLataform_conteiner_check label{
+  cursor:pointer
+}
+
+.BtnPLataform_conteiner_check div{
+  display: flex;
+  width: 40px;
+  height: 40px;
+  margin: 4px 8px;
+  border: 1px solid black;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  transition: .5s all;
+  cursor: pointer;
+}
+
+.BtnPLataform_input{
+  display: none;
+}
+
+.BtnPLataform_input:checked~  div{
+    background-color: #fff9;
+}
+
+  .BtnPLataform_input:checked~  div img {
+  width: 70%;
+}

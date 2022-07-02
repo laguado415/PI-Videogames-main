@@ -13,7 +13,7 @@ export default function GenreFilter() {
   });
 
   let dispatch = useDispatch();
-  let { countGames, url, errorMessage } = useSelector((state) => state);
+  let { url } = useSelector((state) => state);
   let { addUrl, resetRequest } = useUrl(url);
 
   useEffect(() => {
@@ -26,15 +26,14 @@ export default function GenreFilter() {
   };
 
   const handleSubmit = () => {
-    if (countGames || errorMessage.value) {
-      if (genre.filter.checked) {
-        url = addUrl(genre);
-        dispatch(filter(url));
-      } else {
-        // resetRequest "request",data; data(solo en caso de ser filter)
-        url = resetRequest("filter", genre);
-        dispatch(filter(url));
-      }
+    if (genre.filter.checked) {
+      url = addUrl(genre);
+      dispatch(filter(url));
+    }
+    if (!genre.filter.checked) {
+      // resetRequest "request",data; data(solo en caso de ser filter)
+      url = resetRequest("filter", genre);
+      dispatch(filter(url));
     }
   };
   return (

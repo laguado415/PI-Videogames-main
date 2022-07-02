@@ -1,3 +1,150 @@
-h1{
-  color:brown;
+.create_conteiner{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #fff;
+  min-height: 80vh;
+  padding: 30px 0px;
+}
+
+.create_form{
+  display: grid;
+ grid-template-areas:"message message"
+                      "form description"
+                       "check check"
+                       "submit submit";
+ grid-template-columns: 1fr .7fr;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  border-radius: 29px;
+  width: 90%;
+}
+
+.form_conteiner_options{
+  grid-area: check;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4px;
+    margin-top: 9px;
+}
+
+.create_form_form{
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 21px;
+}
+
+.create_form_description{
+  grid-area: description;
+  display: flex;
+  width: 100%;
+  height: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 21px;
+}
+
+.form_conteiner_genres > label > div{
+  width: 50px;
+  height: 50px;
+}
+
+.form_conteiner_genres img{
+    width: 80%;
+    height: 80%;
+}
+
+.create_form_description textarea{
+  width: 91%;
+  height: 80%;
+  resize: none;
+  border-radius: 13px;
+  border: none;
+  outline: none;
+  padding: 11px;
+  margin-top: 8px;
+  margin-bottom: 21px;
+}
+
+.create_form_submit{
+  grid-area: submit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95px;
+}
+
+.create_form_form > input{
+  width: 86%;
+  height: 25px;
+  border-radius: 13px;
+  border: none;
+  outline: none;
+  padding: 11px;
+  margin-bottom: 20px;
+    margin-top: 8px;
+}
+
+.form_conteiner_options  div {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   width: 90%;
+   margin: 13px 0px;
+} 
+
+.create_form_submit button{
+    width: 16%;
+    height: 35px;
+    font-size: 19px;
+    font-weight: bold;
+    border-radius: 13px;
+    transition: .6s all;
+}
+
+.create_form_submit button:active{
+    width: 15%;
+    height: 34px; 
+    background-color: #ccc5;
+    font-size: 18px;
+}
+
+.error{
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+  margin: -15px 0px 6px 0px;
+}
+
+.form_conteiner_message{
+  grid-area: message;
+  width: 100%;
+  height: 62px;
+}
+
+.create_form_message_error{
+  background-color: red;
+  line-height: 47px;
+    text-align: center;
+    font-weight: bold;
+    width: 70%;
+    margin: 15px auto;
+    border-radius: 14px;
+}
+
+.create_form_message{
+  background-color: rgb(5, 187, 5);
+  line-height: 47px;
+    text-align: center;
+    font-weight: bold;
+    width: 70%;
+    margin: 15px auto;
+    border-radius: 14px;
 }

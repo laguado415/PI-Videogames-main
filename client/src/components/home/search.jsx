@@ -17,7 +17,7 @@ export default function Search() {
 
   //renderiza solo la primero vez
   useEffect(() => {
-    dispatch(find(url));
+    console.log(search.find);
   }, []);
 
   const handleChange = (e) => {

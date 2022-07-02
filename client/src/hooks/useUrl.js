@@ -37,6 +37,16 @@ export default function useUrl(url) {
     return { ...url };
   };
 
+  const resetUrl = () => {
+    return {
+      ...url,
+      find: "",
+      filter: [],
+      order: "",
+      page: "",
+    };
+  };
+
   const resetRequest = (request, data) => {
     let defaultValues = {
       find: "",
@@ -63,5 +73,5 @@ export default function useUrl(url) {
     }
   };
 
-  return { addUrl, resetRequest };
+  return { addUrl, resetRequest, resetUrl };
 }

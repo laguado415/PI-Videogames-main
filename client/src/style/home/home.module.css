@@ -32,19 +32,24 @@
 .pagination{
     grid-area: page;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 19%;
+    width: 88%;
 }
 
 .order{
     grid-area: order;
     display: flex;
+    flex-direction: row-reverse;
     width: 90%;
     height: 25px;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-bottom: 5px;
     align-items: flex-end;
+}
+
+.order label{
+  margin-left: 20%;
 }
 
 .filter{

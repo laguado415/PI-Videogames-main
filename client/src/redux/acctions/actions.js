@@ -3,6 +3,9 @@ export const FIND = "find";
 export const ORDER = "order";
 export const FILTER = "filter";
 export const PAGINATION = "pagination";
+export const GENRES = "genres";
+export const ERRORFORM = "errorForm";
+export const MESSAGEFORM = "messageForm";
 export const ERROR = "error";
 
 export const find = (url) => async (dispatch) => {
@@ -60,4 +63,31 @@ export const pagination = (url, page) => {
       )
       .catch(({ response }) => console.log(response.data));
   };
+};
+
+export const genres = () => async (dispatch) => {
+  return axios("http://localhost:3001/genres")
+    .then(({ data }) =>
+      dispatch({
+        type: GENRES,
+        payload: data,
+      })
+    )
+    .catch(({ response }) =>
+      dispatch({
+        type: ERRORFORM,
+        payload: response.data,
+      })
+    );
+};
+
+export const create = (data) => async (dispatch) => {
+  return axios
+    .post("http://localhost:3001/videogames", data)
+    .then(() =>
+      dispatch({ type: MESSAGEFORM, payload: "Se creo el game correctamente" })
+    )
+    .catch(({ response }) =>
+      dispatch({ type: ERRORFORM, payload: response.data })
+    );
 };
