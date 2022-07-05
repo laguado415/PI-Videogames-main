@@ -5,6 +5,8 @@
   background-color: #fff;
   min-height: 80vh;
   padding: 30px 0px;
+  background-image: url("../../image/fondo_page.jpg");
+  background-size: 100% 100%;
 }
 
 .create_form{
@@ -16,7 +18,7 @@
  grid-template-columns: 1fr .7fr;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background-color: #0009;
   color: #fff;
   border-radius: 29px;
   width: 90%;
@@ -38,6 +40,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 21px;
+  line-height: 29px;
 }
 
 .create_form_description{
@@ -70,7 +73,10 @@
   outline: none;
   padding: 11px;
   margin-top: 8px;
-  margin-bottom: 21px;
+}
+
+.create_form_description label {
+  line-height: 22px;
 }
 
 .create_form_submit{
@@ -88,8 +94,8 @@
   border: none;
   outline: none;
   padding: 11px;
-  margin-bottom: 20px;
-    margin-top: 8px;
+  margin-top: 4px;
+  line-height: 29px;
 }
 
 .form_conteiner_options  div {
@@ -112,7 +118,7 @@
 .create_form_submit button:active{
     width: 15%;
     height: 34px; 
-    background-color: #ccc5;
+    background-color: #5559;
     font-size: 18px;
 }
 
@@ -120,7 +126,6 @@
   color: red;
   font-size: 15px;
   font-weight: bold;
-  margin: -15px 0px 6px 0px;
 }
 
 .form_conteiner_message{

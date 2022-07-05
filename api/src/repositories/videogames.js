@@ -157,6 +157,12 @@ const findById = async (id) => {
     if (!videogame) {
       throw new Error("videogame no encontrado");
     }
+
+    if (!videogame.added) {
+      let { data } = await axios(videogame.description);
+      videogame.description = data.description_raw;
+    }
+
     return videogame;
   } catch (err) {
     throw err;
@@ -169,7 +175,7 @@ const addGame = async (data) => {
     let { name, description, image, released, rating, genres, platforms } =
       data;
     if (!name || !description || !genres || !platforms) {
-      throw new Error("Faltan datos para la solicitud");
+      throw new Error("Missing data for the request");
     }
 
     let find = await Videogame.findOne({
@@ -179,7 +185,7 @@ const addGame = async (data) => {
     });
 
     if (find) {
-      throw new Error("El game ya existe");
+      throw new Error("The game already exists");
     }
 
     await Videogame.create({
@@ -193,7 +199,7 @@ const addGame = async (data) => {
     })
       .then((game) => game.addGenres(genres))
       .catch(() => {
-        throw new Error("No se ha podido agregar el game");
+        throw new Error("The game could not be added");
       });
   } catch (err) {
     throw err;

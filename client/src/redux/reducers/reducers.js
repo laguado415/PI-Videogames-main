@@ -7,13 +7,14 @@ import {
   MESSAGEFORM,
   ERROR,
   ERRORFORM,
+  GAME,
 } from "../acctions/actions";
 import imageNotFount from "../../image/NOT FOUND.gif";
 
 const videogames = {
   countGames: 0,
   games: [],
-  game: [],
+  game: {},
   genres: [],
   page: 0,
   url: {
@@ -84,6 +85,11 @@ export default function reducers(state = videogames, { type, payload }) {
           message: "",
           value: false,
         },
+      };
+    case GAME:
+      return {
+        ...state,
+        game: { ...payload },
       };
     case MESSAGEFORM:
       return {

@@ -5,15 +5,13 @@
   color: #fff;
   align-items: center;
   min-height: 264px;
-  border-radius: 39px;
   padding-bottom: 6px;
+  text-decoration: none;
 }
 
 .card_image{
    width: 100%;
    height: 100%;
-   border-top-left-radius: 39px;
-   border-top-right-radius: 39px;
 }
 
 .card_genre_conteiner{
@@ -31,4 +29,6 @@
 .card_image_conteiner{
   width: 100%;
   min-height: 160px;
+  max-height: 200px;
+  margin-bottom: 8px;
 }

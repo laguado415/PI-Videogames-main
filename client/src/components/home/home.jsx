@@ -10,15 +10,18 @@ import useUrl from "../../hooks/useUrl";
 import { find } from "../../redux/acctions/actions";
 
 export default function Home() {
-  let { countGames, page } = useSelector((state) => state);
+  let { countGames } = useSelector((state) => state);
 
   let dispatch = useDispatch();
-  let { url } = useSelector((state) => state);
+  let { url, games } = useSelector((state) => state);
   let { resetUrl } = useUrl(url);
+
+  console.log(games);
 
   //renderiza solo la primero vez
   useEffect(() => {
     url = resetUrl();
+    console.log(url);
     dispatch(find(url));
   }, []);
 
@@ -32,11 +35,7 @@ export default function Home() {
       </div>
       <div className={style.order}>
         <Order />
-        {
-          <label>
-            <b>{`${page + 1}/${Math.ceil(countGames / 15)}`}</b>
-          </label>
-        }
+        {<Pagination />}
         {
           <label>
             <b>{"Games: "}</b>

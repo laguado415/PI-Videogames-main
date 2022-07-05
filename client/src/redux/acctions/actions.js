@@ -4,6 +4,7 @@ export const ORDER = "order";
 export const FILTER = "filter";
 export const PAGINATION = "pagination";
 export const GENRES = "genres";
+export const GAME = "game";
 export const ERRORFORM = "errorForm";
 export const MESSAGEFORM = "messageForm";
 export const ERROR = "error";
@@ -90,4 +91,10 @@ export const create = (data) => async (dispatch) => {
     .catch(({ response }) =>
       dispatch({ type: ERRORFORM, payload: response.data })
     );
+};
+
+export const gameId = (id) => async (dispatch) => {
+  return axios(`http://localhost:3001/videogames/${id}`)
+    .then(({ data }) => dispatch({ type: GAME, payload: data }))
+    .catch(({ response }) => console.log("error"));
 };

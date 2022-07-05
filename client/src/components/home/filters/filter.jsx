@@ -7,15 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { find } from "../../../redux/acctions/actions.js";
 import { FiTrash2 } from "react-icons/fi";
 import { IconContext } from "react-icons";
+import NAME_PAGE from "../../../image/GAME.gif";
 
 export default function Filter() {
   let dispatch = useDispatch();
   let { url } = useSelector((state) => state);
   let { resetRequest } = useUrl(url);
-
-  useEffect(() => {
-    handleSubmit();
-  }, []);
 
   const handleSubmit = (e) => {
     e?.preventDefault();
@@ -35,27 +32,32 @@ export default function Filter() {
   };
 
   return (
-    <div className={style.filter_conteiner}>
-      <form onSubmit={handleSubmit} className={style.filter_form}>
-        <h2 className={style.filter_title}>
-          <b>Filter</b>
-        </h2>
-        <button type="submit" className={style.filter_btn_clear}>
-          <IconContext.Provider
-            value={{ className: style.filter_btn_icon_clear }}
-          >
-            <FiTrash2 />
-          </IconContext.Provider>
-        </button>
-        <div>
+    <>
+      <div className={style.filter_conteiner_img}>
+        <img src={NAME_PAGE} alt="NAME_PAGE" />
+      </div>
+      <div className={style.filter_conteiner}>
+        <form onSubmit={handleSubmit} className={style.filter_form}>
+          <h2 className={style.filter_title}>
+            <b>Filter</b>
+          </h2>
+          <button type="submit" className={style.filter_btn_clear}>
+            <IconContext.Provider
+              value={{ className: style.filter_btn_icon_clear }}
+            >
+              <FiTrash2 />
+            </IconContext.Provider>
+          </button>
           <div>
-            <GenreFilter />
+            <div>
+              <GenreFilter />
+            </div>
+            <div>
+              <OriginFilter />
+            </div>
           </div>
-          <div>
-            <OriginFilter />
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }

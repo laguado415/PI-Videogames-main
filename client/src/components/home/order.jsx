@@ -14,7 +14,7 @@ export default function Order() {
 
   let column = ["name", "rating"];
   let direction = ["ASC", "DESC"];
-
+  
   useEffect(() => {
     handleSubmit();
   }, [state]);

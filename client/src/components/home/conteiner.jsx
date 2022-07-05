@@ -13,6 +13,7 @@ export default function Container() {
           {games?.map((game) => (
             <Card
               key={game.id}
+              id={game.id}
               name={game.name}
               image={game.image}
               genres={game.genres}

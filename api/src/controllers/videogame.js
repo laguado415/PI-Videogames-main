@@ -59,7 +59,7 @@ module.exports = {
         platforms: "",
       };
       await repoVideoGame.addGame({ ...data, ...req.body });
-      return res.json("Game se agrego correctamente");
+      return res.json("Game added successfully");
     } catch (err) {
       return res.status(404).json(err.message);
     }

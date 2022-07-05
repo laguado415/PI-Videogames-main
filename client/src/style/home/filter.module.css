@@ -1,9 +1,18 @@
 .filter_conteiner{
-   background-color: #ccc;
-   width: 91%;
-   margin: 0px auto;
+   background-color: #0009;
+   width: 77%;
    padding: 11px;
-   border-radius: 46px;
+   color: #fff;
+   margin-left: 10%;
+}
+
+.filter_conteiner_img{
+  width: 100%;
+}
+
+.filter_conteiner_img img{
+   width: 100%;
+   height: 160px;
 }
 
 .filter_form{
@@ -38,12 +47,13 @@
    width: 24px;
    outline: none;
    border: none;
-   background-color: #ccc;
+   background-color: #000;
 }
 
 .filter_btn_icon_clear{
    width: 100%;
    height: 100%;
+   color : #fff;
 }
 
 .filter_tilte{

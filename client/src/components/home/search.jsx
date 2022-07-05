@@ -15,11 +15,6 @@ export default function Search() {
   let { url } = useSelector((state) => state);
   let { addUrl } = useUrl(url);
 
-  //renderiza solo la primero vez
-  useEffect(() => {
-    console.log(search.find);
-  }, []);
-
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
   };

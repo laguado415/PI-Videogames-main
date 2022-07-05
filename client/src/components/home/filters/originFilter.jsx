@@ -35,11 +35,12 @@ export default function OriginFilter() {
   const handleSubmit = () => {
     if (previusState.filter.value) {
       url = resetRequest("filter", previusState);
+      dispatch(filter(url));
     }
     if (origin.filter.value) {
       url = addUrl(origin);
+      dispatch(filter(url));
     }
-    dispatch(filter(url));
   };
 
   return (

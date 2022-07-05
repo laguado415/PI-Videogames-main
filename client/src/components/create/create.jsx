@@ -21,31 +21,32 @@ const validate = ({
 
   if (name?.trim()) {
     if (!RegExpName.test(name)) {
-      error.name = "Solo se aceptan letras";
+      error.name = "Only letters are accepted";
     } else {
       error.name = "";
     }
   } else {
     if (name !== undefined) {
-      error.name = "El campo name es requerido";
+      error.name = "field is required";
     }
   }
 
   if (released?.trim()) {
     if (isNaN(Date.parse(released))) {
-      error.released = "El campo solo acepta formato dd/mm/yyyy";
+      error.released = "field only accepts dd/mm/yyyy format";
     } else {
       error.released = "";
     }
   } else {
     if (released !== undefined) {
-      error.released = "El campo released es requerido";
+      error.released = "field is required";
     }
   }
 
   if (image !== undefined) {
     if (image.length && !RegExpImgUrl.test(image)) {
-      error.image = "La imagen no cumple con el formato https://example.jpg";
+      error.image =
+        "The image does not comply with the format https://example.__";
     } else {
       error.image = "";
     }
@@ -53,52 +54,54 @@ const validate = ({
 
   if (description?.trim().length) {
     if (description.length > 360) {
-      error.description = "solo son permitidos 360 caracteres como maximo";
+      error.description = "only 360 characters maximum are allowed";
     } else {
       error.description = "";
     }
   } else {
     if (description !== undefined) {
-      error.description = "El campo description requerido";
+      error.description = "field is required";
     }
   }
 
   if (rating?.trim().length) {
     if (isNaN(rating)) {
       // return false si es number
-      error.rating = "Solo se aceptan valores numericos";
+      error.rating = "Only numeric values are accepted";
     } else {
       let arrayFloat = rating.split(".");
       if (Number(arrayFloat[0]) < 0 || Number(arrayFloat[0]) > 5) {
-        error.rating = "Solo se aceptan valores 0-5";
+        error.rating = "Only values 0-5 are accepted";
       } else {
         error.rating =
-          arrayFloat[1] > 9 ? "Se acepta maximo un digito de precision" : "";
+          arrayFloat[1] > 9
+            ? "A maximum of one digit of precision is accepted"
+            : "";
       }
     }
   } else {
     if (rating !== undefined) {
-      error.rating = "El campo es requerido";
+      error.rating = "field is required";
     }
   }
 
   if (platforms !== undefined) {
     if (!platforms.length) {
-      error.platforms = "El campo es requerido";
+      error.platforms = "field is required";
     }
   } else {
     if (platforms !== undefined) {
-      error.platforms = "El Campo es requerido";
+      error.platforms = "field is required";
     }
   }
 
   if (genres !== undefined) {
     if (!genres.length) {
-      error.genres = "El campo es requerido";
+      error.genres = "field is required";
     }
   } else {
     if (genres !== undefined) {
-      error.genres = "El Campo es requerido";
+      error.genres = "field is required";
     }
   }
 
@@ -249,7 +252,7 @@ export default function Create() {
             onChange={handleChange}
             onBlur={handleBlur}
             value={newGame.image}
-            placeholder=""
+            placeholder="https://example.__"
             name="image"
           />
           {error.image && <div className={style.error}>{error.image}</div>}
@@ -261,7 +264,7 @@ export default function Create() {
             onChange={handleChange}
             onBlur={handleBlur}
             value={newGame.rating}
-            placeholder=""
+            placeholder="example 4.2"
             name="rating"
           />
           {error.rating && <div className={style.error}>{error.rating}</div>}
@@ -328,6 +331,7 @@ export default function Create() {
             placeholder=""
             name="description"
           />
+          <label>{newGame.description.length}/360</label>
           {error.description && (
             <div className={style.error}>{error.description}</div>
           )}

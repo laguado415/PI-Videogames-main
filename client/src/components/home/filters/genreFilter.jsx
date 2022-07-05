@@ -30,7 +30,7 @@ export default function GenreFilter() {
       url = addUrl(genre);
       dispatch(filter(url));
     }
-    if (!genre.filter.checked) {
+    if (!genre.filter.checked && genre.filter.value) {
       // resetRequest "request",data; data(solo en caso de ser filter)
       url = resetRequest("filter", genre);
       dispatch(filter(url));

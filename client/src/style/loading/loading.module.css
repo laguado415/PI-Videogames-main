@@ -1,0 +1,13 @@
+.conteiner_loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../image/fondo_page.jpg");
+  position: absolute;
+}
+
+.conteiner_loading img{
+  cursor: pointer;
+}
