@@ -120,6 +120,7 @@ export default function Create() {
   });
   //------error inputs-----------------
   let [error, setError] = useState({});
+  //--------message de create----
   let [message, setMenssage] = useState(false);
 
   let dispatch = useDispatch();
@@ -139,6 +140,7 @@ export default function Create() {
     };
   }, [message]);
 
+  //setea los messages de error al create
   const messageCreate = () => {
     if (messageForm.value) {
       return (
@@ -174,6 +176,7 @@ export default function Create() {
     let { name, value, checked } = e.target;
     if (name === "genres" || name === "platforms") {
       if (!checked) {
+        //----deschequeo-------
         let newValue = newGame[name].filter((options) => options !== value);
         setNewGame({ ...newGame, [name]: [...newValue] });
       } else {

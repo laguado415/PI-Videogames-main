@@ -58,6 +58,7 @@ const addCollectionGenre = async () => {
           name: game.genreJson,
         },
       });
+      //mixins pasa array [generes]
       await game.addGenres(genre);
     }
   } catch (err) {
@@ -129,6 +130,7 @@ const findAndCountAll = async ({
       offset,
     });
 
+    //me cunta el numero de videojuegos  mas no el numero de registros
     let g = await Videogame.findAll({
       attributes,
       order,

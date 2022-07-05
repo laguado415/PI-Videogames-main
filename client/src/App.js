@@ -5,6 +5,7 @@ import "./App.css";
 import Create from "./components/create/create.jsx";
 import Detail from "./components/details/detail.jsx";
 import Loading from "./components/loading/loading.jsx";
+import ErrorPage from "./components/erroPage.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="create" element={<Create />} />
           <Route path="details/:id" element={<Detail />} />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

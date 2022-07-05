@@ -1,5 +1,6 @@
 .conteiner_loading{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -8,6 +9,16 @@
   position: absolute;
 }
 
-.conteiner_loading img{
+.conteiner_loading > img{
   cursor: pointer;
+}
+
+.click_here {
+  width: 75px;
+  margin-top: 45px;
+}
+
+.click_here img{
+  width: 100%;
+  height: 100%;
 }

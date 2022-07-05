@@ -54,10 +54,12 @@ export default function useUrl(url) {
       order: "",
     };
 
+    //----delete all-filter--
     if (request === "All") {
       return { ...url, filter: [], page: "" };
     }
 
+    //---delete filter
     if (request === "filter") {
       let { name, value } = data.filter;
       let filter = [...url.filter];
