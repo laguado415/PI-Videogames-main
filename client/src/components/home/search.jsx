@@ -13,7 +13,7 @@ export default function Search() {
 
   let dispatch = useDispatch();
   let { url } = useSelector((state) => state);
-  let { addUrl } = useUrl(url);
+  let { addUrl, resetRequest } = useUrl(url);
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
@@ -25,6 +25,10 @@ export default function Search() {
       url = addUrl(search);
       dispatch(find(url));
       setSearch({ ...search, find: "" });
+    } else {
+      //-------reset find----------------------
+      url = resetRequest("find");
+      dispatch(find(url));
     }
   };
   return (
