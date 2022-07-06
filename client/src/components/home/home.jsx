@@ -14,14 +14,11 @@ export default function Home() {
 
   let dispatch = useDispatch();
   let { url, games } = useSelector((state) => state);
-  let { resetUrl } = useUrl(url);
-
-  console.log(games);
+  //let { resetUrl } = useUrl(url);
 
   //renderiza solo la primero vez
   useEffect(() => {
-    url = resetUrl();
-    console.log(url);
+    //url = resetUrl();
     dispatch(find(url));
   }, []);
 

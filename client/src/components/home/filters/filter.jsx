@@ -14,12 +14,27 @@ export default function Filter() {
   let { url } = useSelector((state) => state);
   let { resetRequest } = useUrl(url);
 
+  useEffect(() => {
+    if (url.filter.length) {
+      let { filter } = url;
+      previusCheckFilters(filter);
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e?.preventDefault();
     url = resetRequest("All");
     resetCheckFilters();
     dispatch(find(url));
-    console.log("clear");
+  };
+
+  // --------------reset a estado previo -------------------------------
+  const previusCheckFilters = (filter) => {
+    filter.map((name) => {
+      name = name.split("=")[1];
+      let check = document.querySelector(`form input[value=${name}]`);
+      check.checked = true;
+    });
   };
 
   const resetCheckFilters = () => {
