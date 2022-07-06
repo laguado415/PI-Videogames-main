@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../../style/home/card.module.css";
-import CardGenre from "./cardGenres";
+import ConteinerLogo from "./conteinerLogo";
 import { Link } from "react-router-dom";
 
 export default function Card({ name, image, genres, id }) {
@@ -17,7 +17,11 @@ export default function Card({ name, image, genres, id }) {
         </div>
         <div className={style.card_genre_conteiner}>
           {genres?.map((genre) => (
-            <CardGenre key={genre.id} name={genre.name} image={genre.image} />
+            <ConteinerLogo
+              key={genre.id}
+              name={genre.name}
+              image={genre.image}
+            />
           ))}
         </div>
       </Link>

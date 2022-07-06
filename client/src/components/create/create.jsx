@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "../../style/create/create.module.css";
-import BtnPlatform from "../btnPlatform";
+import BtnCheckForm from "../btnCheckForm";
 import { useDispatch, useSelector } from "react-redux";
 import { create, genres } from "../../redux/acctions/actions.js";
 
@@ -277,27 +277,31 @@ export default function Create() {
             <b>Platform</b>
           </label>
           <div className={style.form_conteiner_genres}>
-            <BtnPlatform name="platforms" id="PC" fnClick={handleChange} />
-            <BtnPlatform name="platforms" id="Android" fnClick={handleChange} />
-            <BtnPlatform
+            <BtnCheckForm name="platforms" id="PC" fnClick={handleChange} />
+            <BtnCheckForm
+              name="platforms"
+              id="Android"
+              fnClick={handleChange}
+            />
+            <BtnCheckForm
               name="platforms"
               id="Nintendo"
               fnClick={handleChange}
             />
-            <BtnPlatform
+            <BtnCheckForm
               name="platforms"
               id="Apple Macintosh"
               value="Apple Macintosh"
               fnClick={handleChange}
             />
-            <BtnPlatform name="platforms" id="Linux" fnClick={handleChange} />
-            <BtnPlatform
+            <BtnCheckForm name="platforms" id="Linux" fnClick={handleChange} />
+            <BtnCheckForm
               name="platforms"
               id="PlayStation"
               fnClick={handleChange}
             />
-            <BtnPlatform name="platforms" id="Xbox" fnClick={handleChange} />
-            <BtnPlatform name="platforms" id="iOS" fnClick={handleChange} />
+            <BtnCheckForm name="platforms" id="Xbox" fnClick={handleChange} />
+            <BtnCheckForm name="platforms" id="iOS" fnClick={handleChange} />
           </div>
           {error.platforms && (
             <div className={style.error}>{error.platforms}</div>
@@ -307,12 +311,11 @@ export default function Create() {
           </label>
           <div className={style.form_conteiner_genres}>
             {genre?.map((genre) => (
-              <BtnPlatform
+              <BtnCheckForm
                 key={genre.id}
                 value={genre.id}
                 id={genre.name}
                 name="genres"
-                // image={genre.image}
                 fnClick={handleChange}
               />
             ))}

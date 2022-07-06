@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { gameId } from "../../redux/acctions/actions.js";
-import CardGenre from "../home/cardGenres.jsx";
+import ConteinerLogo from "../home/conteinerLogo";
 import style from "../../style/details/detail.module.css";
 import LOUDING from "../../image/loading.gif";
 
@@ -15,7 +15,6 @@ export default function Detail() {
     rating: "",
     genres: "",
     platforms: "",
-    initialized: false,
   });
 
   let [previus, setPrevius] = useState(false);
@@ -66,13 +65,17 @@ export default function Detail() {
           <span>Genres</span>
           <div className={style.genres}>
             {state?.genres?.map((genre) => (
-              <CardGenre key={genre.id} name={genre.name} image={genre.image} />
+              <ConteinerLogo
+                key={genre.id}
+                name={genre.name}
+                image={genre.image}
+              />
             ))}
           </div>
           <span>Platform</span>
           <div className={style.platforms}>
             {state?.platforms?.map((platform) => (
-              <CardGenre key={platform} name={platform} />
+              <ConteinerLogo key={platform} name={platform} />
             ))}
           </div>
         </div>
