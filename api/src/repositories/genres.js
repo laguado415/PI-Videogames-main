@@ -15,7 +15,7 @@ const generatorGenre = async () => {
 
     await Genre.bulkCreate(data);
   } catch (err) {
-    throw new Error("error al adicionar generos a la tabla intermedia");
+    throw new Error("error adding genres to intermediate table");
   }
 };
 
@@ -25,7 +25,7 @@ const findAll = async () => {
     if (validate.length) {
       return validate;
     }
-    throw new Error("Data Base Genres vacia");
+    throw new Error("Database Genres empty");
   } catch (err) {
     throw err;
   }

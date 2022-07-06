@@ -11,14 +11,9 @@ const formatGame = async () => {
     let collection = [];
     let request = await axios(`https://api.rawg.io/api/games${API_KEY}`);
     request = request.data;
-    // let i = 0;
     while (request.next && collection.length < 10) {
       let games = [];
       for (let game of request.results) {
-        // game = await axios(
-        //   `https://api.rawg.io/api/games/${game.id}${API_KEY}`
-        // );
-        // game = game.data;
         games.push({
           name: game.name,
           platforms: game.parent_platforms.map((game) => game.platform.name),
@@ -31,10 +26,8 @@ const formatGame = async () => {
         });
       }
       collection.push(games);
-      console.log(collection.length);
       request = await axios(request.next);
       request = request.data;
-      console.log(!request.next);
     }
     //para no recorrer 5 posiciones si no pasar una vez el metodo bulkCreate()
     collection = collection.flat();
@@ -62,7 +55,7 @@ const addCollectionGenre = async () => {
       await game.addGenres(genre);
     }
   } catch (err) {
-    throw new Error("error al adicionar generos");
+    throw new Error("error adding genres");
   }
 };
 
@@ -82,27 +75,21 @@ const findAndCountAll = async ({
 
     if (options) {
       let validate = Object.keys(options);
-      //------------repetidos-------------------------
-      function recurrent(value, index, array) {
-        return array.indexOf(value) === index;
-      }
-      if (validate.length <= 2 && validate.some(recurrent)) {
+
+      if (validate.length <= 1) {
         if (!options.direction) {
           order = [[options.column ? options.column : "name"]];
         } else {
-          order = [
-            [options.column ? options.column : "name", options.direction],
-          ];
+          order = [["name", options.direction]];
         }
       }
     }
+
     if (find) {
-      //refactorizar
-      find = Object.entries(find);
-      for (let [key, value] of find) {
-        where[key] = { [Op.iLike]: `%${value}%` };
-      }
+      let { name } = find;
+      where.name = { [Op.iLike]: `%${name}%` };
     }
+
     if (filter) {
       if (filter.hasOwnProperty("added") && !Array.isArray(filter.added)) {
         where.added = filter.added;
@@ -131,18 +118,18 @@ const findAndCountAll = async ({
     });
 
     //me cunta el numero de videojuegos  mas no el numero de registros
-    let g = await Videogame.findAll({
+    let count = await Videogame.findAll({
       attributes,
       order,
       include,
       where,
     });
 
-    query.count = g.length;
+    query.count = count.length;
 
     return query;
   } catch (err) {
-    throw new Error("No se pudo realizar la busqueda");
+    throw new Error("Search could not be performed");
   }
 };
 
@@ -157,7 +144,7 @@ const findById = async (id) => {
       ],
     });
     if (!videogame) {
-      throw new Error("videogame no encontrado");
+      throw new Error("game not found");
     }
 
     if (!videogame.added) {

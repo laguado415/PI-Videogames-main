@@ -23,10 +23,10 @@ module.exports = {
       }
 
       if (find || filter) {
-        throw new Error("no se encontraron games");
+        throw new Error("games not found");
       }
 
-      throw new Error("Data Base vacia");
+      throw new Error("Database empty");
     } catch (err) {
       return res.status(404).json(err.message);
     }
@@ -35,7 +35,7 @@ module.exports = {
     try {
       let { id } = req.params;
       if (!id) {
-        throw new Error("id requerido");
+        throw new Error("id required");
       }
       return res.json(await repoVideoGame.findById(id));
     } catch (err) {
@@ -45,9 +45,7 @@ module.exports = {
   postGame: async (req, res) => {
     try {
       if (!Object.entries(req.body).length) {
-        throw new Error(
-          "se requieren dataos para agregar game por favor suministrarlos"
-        );
+        throw new Error("data is required to add game please provide them");
       }
       let data = {
         name: "",
