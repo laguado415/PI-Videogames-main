@@ -113,6 +113,8 @@
     font-weight: bold;
     border-radius: 13px;
     transition: .6s all;
+    background-color: #555;
+    color: white;
 }
 
 .create_form_submit button:active{

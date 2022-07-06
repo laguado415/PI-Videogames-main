@@ -167,6 +167,7 @@ const addGame = async (data) => {
       throw new Error("Missing data for the request");
     }
 
+    name = name.trim();
     let find = await Videogame.findOne({
       where: {
         name: name,
