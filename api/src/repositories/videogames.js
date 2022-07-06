@@ -187,7 +187,12 @@ const addGame = async (data) => {
       platforms,
       added: true,
     })
-      .then((game) => game.addGenres(genres))
+      .then((game) =>
+        game.addGenres(genres).catch(() => {
+          game.destroy();
+          throw Error;
+        })
+      )
       .catch(() => {
         throw new Error("The game could not be added");
       });

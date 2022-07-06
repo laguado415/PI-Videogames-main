@@ -2,5 +2,8 @@
   "dependencies": {
     "axios": "^0.27.2",
     "react-icons": "^4.4.0"
+  },
+  "devDependencies": {
+    "supertest-session": "^4.1.0"
   }
 }

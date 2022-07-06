@@ -22,9 +22,11 @@ module.exports = (sequelize) => {
       },
       released: {
         type: DataTypes.DATEONLY,
+        allowNull: false,
       },
       rating: {
         type: DataTypes.FLOAT,
+        allowNull: false,
       },
       ratings: {
         type: DataTypes.JSON,
