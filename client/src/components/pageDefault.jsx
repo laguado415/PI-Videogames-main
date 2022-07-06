@@ -15,12 +15,16 @@ export default function PageDefault() {
             </IconContext.Provider>
           </div>
           <div className={style.menu}>
-            <Link to="/game/home">
-              <label>Home</label>
-            </Link>
-            <Link to="/game/create">
-              <label>Create Game</label>
-            </Link>
+            <div>
+              <Link to="/game/home">
+                <label>Home</label>
+              </Link>
+            </div>
+            <div>
+              <Link to="/game/create">
+                <label>Create Game</label>
+              </Link>
+            </div>
           </div>
         </nav>
       </header>
