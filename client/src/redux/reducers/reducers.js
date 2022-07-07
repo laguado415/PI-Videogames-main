@@ -47,7 +47,7 @@ export default function reducers(state = videogames, { type, payload }) {
         games: [...payload.data],
         url: payload.url,
         countGames: payload.countGames,
-        page: "",
+        page: payload.page,
         errorMessage: { ...state.errorMessage, value: false },
       };
     case FILTER:

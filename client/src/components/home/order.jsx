@@ -14,7 +14,14 @@ export default function Order() {
 
   let column = ["name", "rating"];
   let direction = ["ASC", "DESC"];
-  
+
+  useEffect(() => {
+    if (url.order.length) {
+      let value = url.order.split("=")[1];
+      previusOrder(value);
+    }
+  }, []);
+
   useEffect(() => {
     handleSubmit();
   }, [state]);
@@ -22,6 +29,11 @@ export default function Order() {
   let dispatch = useDispatch();
   let { url, countGames } = useSelector((state) => state);
   let { addUrl, resetRequest } = useUrl(url);
+
+  //-------- previus order -----------------------
+  const previusOrder = (value) => {
+    document.getElementById("Order").value = value;
+  };
 
   const handleChange = (e) => {
     let { value } = e.target;

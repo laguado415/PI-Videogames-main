@@ -9,12 +9,18 @@ export const ERRORFORM = "errorForm";
 export const MESSAGEFORM = "messageForm";
 export const ERROR = "error";
 
-export const find = (url) => async (dispatch) => {
+export const find = (url, page) => async (dispatch) => {
+ //-------------page opcional------------
   return axios(Object.values(url).flat().join(""))
     .then(({ data }) =>
       dispatch({
         type: FIND,
-        payload: { data: data.rows, url: url, countGames: data.count },
+        payload: {
+          data: data.rows,
+          url: url,
+          countGames: data.count,
+          page: page ? page : 0,
+        },
       })
     )
     .catch(({ response }) =>
