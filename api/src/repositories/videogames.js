@@ -11,7 +11,7 @@ const formatGame = async () => {
     let collection = [];
     let request = await axios(`https://api.rawg.io/api/games${API_KEY}`);
     request = request.data;
-    while (request.next && collection.length < 10) {
+    while (request.next && collection.length < 5) {
       let games = [];
       for (let game of request.results) {
         games.push({

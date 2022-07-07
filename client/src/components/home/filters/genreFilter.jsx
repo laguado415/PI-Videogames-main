@@ -166,7 +166,7 @@ export default function GenreFilter() {
             name="genre"
             type="checkbox"
             id="Massively_Multiplayer"
-            value="Massively Multiplayer"
+            value="Massively_Multiplayer"
           />
           <label htmlFor="Massively_Multiplayer">Massively Multiplayer</label>
         </li>
@@ -206,7 +206,7 @@ export default function GenreFilter() {
             name="genre"
             type="checkbox"
             id="Board_Games"
-            value="Board Games"
+            value="Board_Games"
           />
           <label htmlFor="Board_Games">Board Games</label>
         </li>

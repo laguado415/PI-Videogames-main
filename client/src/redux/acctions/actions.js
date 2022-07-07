@@ -10,7 +10,7 @@ export const MESSAGEFORM = "messageForm";
 export const ERROR = "error";
 
 export const find = (url, page) => async (dispatch) => {
- //-------------page opcional------------
+  //-------------page opcional------------
   return axios(Object.values(url).flat().join(""))
     .then(({ data }) =>
       dispatch({

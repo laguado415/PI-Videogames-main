@@ -14,6 +14,7 @@ export default function useUrl(url) {
         url[request] = `&find[name]=${data[request]}`;
         break;
       case "filter":
+        data[request].value = data[request].value.split("_").join(" ");
         url.page = "";
         url[request].push(
           `&filter[${data[request].name}]=${data[request].value}`
@@ -63,6 +64,7 @@ export default function useUrl(url) {
     if (request === "filter") {
       let { name, value } = data.filter;
       let filter = [...url.filter];
+      value = value.split("_").join(" ");
       let validateString = `&filter[${name}]=${value}`;
       if (filter.includes(validateString)) {
         url.filter = filter.filter((filter) => filter !== validateString);
