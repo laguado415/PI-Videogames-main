@@ -33,7 +33,6 @@ export default function Filter() {
     filter.map((name) => {
       name = name.split("=")[1];
       name = name.split(" ").join("_");
-      console.log(name);
       let check = document.querySelector(`form input[value=${name}]`);
       check.checked = true;
     });

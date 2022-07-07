@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { gameId } from "../../redux/acctions/actions.js";
 import ConteinerLogo from "../home/conteinerLogo";
 import style from "../../style/details/detail.module.css";
@@ -55,6 +55,11 @@ export default function Detail() {
       )}
       {state.name && (
         <div className={style.conteiner}>
+          <div className={style.btn_back}>
+            <Link to="/game/home">
+              <b>BACK</b>
+            </Link>
+          </div>
           <div className={style.conteiner_img}>
             <img src={state.image} alt="ERROR_IMAGE" />
           </div>

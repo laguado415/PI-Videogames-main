@@ -91,8 +91,11 @@ export const genres = () => async (dispatch) => {
 export const create = (data) => async (dispatch) => {
   return axios
     .post("http://localhost:3001/videogames", data)
-    .then(() =>
-      dispatch({ type: MESSAGEFORM, payload: "Se creo el game correctamente" })
+    .then(({ data }) =>
+      dispatch({
+        type: MESSAGEFORM,
+        payload: data,
+      })
     )
     .catch(({ response }) =>
       dispatch({ type: ERRORFORM, payload: response.data })
