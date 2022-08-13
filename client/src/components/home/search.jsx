@@ -12,25 +12,37 @@ export default function Search() {
   });
 
   let dispatch = useDispatch();
-  let { url } = useSelector((state) => state);
+  let { url, page } = useSelector((state) => state);
   let { addUrl, resetRequest } = useUrl(url);
+
+  useEffect(()=>{
+    let previusSearch = localStorage.getItem("search");
+    if(previusSearch){
+       setSearch({ find: previusSearch });
+       url = addUrl({ find: previusSearch });
+       url = addUrl({ page: page });
+       dispatch(find(url,page));
+    }
+  },[])
 
   const handleChange = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
+    if(!e.target.value){
+      url = resetRequest("find");
+      dispatch(find(url));
+      localStorage.removeItem("search");
+    }
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search.find) {
       url = addUrl(search);
       dispatch(find(url));
-      setSearch({ ...search, find: "" });
-    } else {
-      //-------reset find----------------------
-      url = resetRequest("find");
-      dispatch(find(url));
-    }
+      localStorage.setItem("search",search.find);
+     }
   };
+
   return (
     <>
       <form onSubmit={handleSubmit} className={style.search_conteiner}>

@@ -14,7 +14,7 @@ export default function Pagination() {
   let dispatch = useDispatch();
   let { url, page, countGames: count, games } = useSelector((state) => state);
   let { addUrl } = useUrl(url);
-
+  
   useEffect(() => {
     setState({ page: page + 1 });
   }, [games]);

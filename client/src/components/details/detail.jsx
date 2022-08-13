@@ -27,6 +27,7 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(gameId(id));
+    scrollTop();
   }, []);
 
   useEffect(() => {
@@ -45,6 +46,10 @@ export default function Detail() {
       setLoding(true);
     }
   }, [game]);
+
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+  };
 
   return (
     <div className={style.conteiner_details}>

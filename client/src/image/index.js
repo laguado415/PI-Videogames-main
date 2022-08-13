@@ -10,6 +10,8 @@ export { default as iOS } from "./platformIcon/iOS.svg";
 export { default as Linux } from "./platformIcon/Linux.svg";
 export { default as PlayStation } from "./platformIcon/PlayStation.svg";
 export { default as Xbox } from "./platformIcon/Xbox.svg";
+export { default as Web } from "./platformIcon/Web.svg";
+export { default as SEGA } from "./platformIcon/SEGA.svg";
 
 //-------------------genres----------------------------------------
 export { default as Adventure } from "./genres/Adventure.svg";
