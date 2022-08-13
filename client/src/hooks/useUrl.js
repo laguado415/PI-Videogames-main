@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux"; 
+
 /*
    setea url
    addUrl recibe Object 
@@ -39,6 +41,7 @@ export default function useUrl(url) {
   };
 
   const resetUrl = () => {
+    console.log("reset")
     return {
       ...url,
       find: "",
