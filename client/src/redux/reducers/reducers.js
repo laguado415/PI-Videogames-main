@@ -10,6 +10,7 @@ import {
   GAME,
 } from "../acctions/actions";
 import imageNotFount from "../../image/NOT FOUND.gif";
+import { baseUrl } from "../../utils/config";
 
 const videogames = {
   countGames: 0,
@@ -18,7 +19,7 @@ const videogames = {
   genres: [],
   page: 0,
   url: {
-    patch: "http://localhost:3001/videogames?",
+    patch: `${baseUrl}/videogames?`,
     find: "",
     filter: [],
     order: "",
