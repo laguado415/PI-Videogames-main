@@ -1,4 +1,5 @@
 import axios from "axios";
+import { baseUrl } from "../../utils/config";
 export const FIND = "find";
 export const ORDER = "order";
 export const FILTER = "filter";
@@ -73,7 +74,7 @@ export const pagination = (url, page) => {
 };
 
 export const genres = () => async (dispatch) => {
-  return axios("http://localhost:3001/genres")
+  return axios(`${baseUrl}/genres`)
     .then(({ data }) =>
       dispatch({
         type: GENRES,
@@ -103,7 +104,7 @@ export const create = (data) => async (dispatch) => {
 };
 
 export const gameId = (id) => async (dispatch) => {
-  return axios(`http://localhost:3001/videogames/${id}`)
+  return axios(`${baseUrl}/videogames/${id}`)
     .then(({ data }) => dispatch({ type: GAME, payload: data }))
     .catch(({ response }) => console.log("error"));
 };
