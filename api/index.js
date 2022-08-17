@@ -23,12 +23,15 @@ const { formatGame } = require("./src/repositories/videogames");
 
 // Syncing all the models at once.
 
-Promise.all([conn.authenticate, conn.sync({ force: true })])
+ const host = process.env.DB_HOST || "0.0.0.0";
+ const port = process.env.PORT || 3001;
+
+Promise.all([conn.authenticate, conn.sync({force: true})])
   .then(() =>
-    server.listen(3001, async () => {
+    server.listen( port, host, async () => {
       //revizar y configuarar
       await formatGame();
-      console.log("URL: http://localhost:3001/");
+      console.log("port",port," host",host);
     })
   )
   .catch((err) => console.log("se presento un error", err));
