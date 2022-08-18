@@ -32,6 +32,6 @@ const findAll = async () => {
 };
 
 module.exports = {
-  generatorGenre,
+  //generatorGenre,
   findAll,
 };

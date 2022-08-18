@@ -203,7 +203,7 @@ const addGame = async (data) => {
 };
 
 module.exports = {
-  formatGame,
+//  formatGame,
   addCollectionGenre,
   findAndCountAll,
   findById,
