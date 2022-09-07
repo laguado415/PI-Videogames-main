@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const { formatGame } = require("./src/repositories/videogames");//No desarrollo
+//const { formatGame } = require("./src/repositories/videogames");//No desarrollo
 
 // Syncing all the models at once.
 
@@ -30,7 +30,7 @@ Promise.all([conn.authenticate, conn.sync()])
   .then(() =>
     server.listen( port, host, async () => {
       //revizar y configuarar
-      await formatGame();//No desarrollo
+      //await formatGame();//No desarrollo
       console.log("port",port," host",host);
     })
   )

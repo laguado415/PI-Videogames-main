@@ -3,44 +3,44 @@ const { API_KEY } = process.env;
 const axios = require("axios");
 const videogame = require("../controllers/videogame");
 const { Op, conn: sequelize, Videogame, Genre } = require("../db");
-const { generatorGenre } = require("../repositories/genres");// no en desarrollo
+//const { generatorGenre } = require("../repositories/genres");// no en desarrollo
 
 
 // //---------------------add collection de RAWG----------
-const formatGame = async () => {// no en desarrolo
-  try {
-    let collection = [];
-    let request = await axios(`https://api.rawg.io/api/games${API_KEY}`);
-    request = request.data;
-    while (request.next && collection.length < 5) {
-      let games = [];
-      for (let game of request.results) {
-        games.push({
-          name: game.name,
-          platforms: game.parent_platforms.map((game) => game.platform.name),
-          rating: game.rating,
-          ratings: { ...game.ratings },
-          image: game.background_image,
-          released: game.released,
-          description: `https://api.rawg.io/api/games/${game.id}${API_KEY}`,
-          genreJson: game.genres.map((genre) => genre.name),
-        });
-      }
-      collection.push(games);
-      request = await axios(request.next);
-      request = request.data;
-    }
-    //para no recorrer 5 posiciones si no pasar una vez el metodo bulkCreate()
-    collection = collection.flat();
+// const formatGame = async () => {// no en desarrolo
+//   try {
+//     let collection = [];
+//     let request = await axios(`https://api.rawg.io/api/games${API_KEY}`);
+//     request = request.data;
+//     while (request.next && collection.length < 5) {
+//       let games = [];
+//       for (let game of request.results) {
+//         games.push({
+//           name: game.name,
+//           platforms: game.parent_platforms.map((game) => game.platform.name),
+//           rating: game.rating,
+//           ratings: { ...game.ratings },
+//           image: game.background_image,
+//           released: game.released,
+//           description: `https://api.rawg.io/api/games/${game.id}${API_KEY}`,
+//           genreJson: game.genres.map((genre) => genre.name),
+//         });
+//       }
+//       collection.push(games);
+//       request = await axios(request.next);
+//       request = request.data;
+//     }
+//     //para no recorrer 5 posiciones si no pasar una vez el metodo bulkCreate()
+//     collection = collection.flat();
 
-    await Videogame.bulkCreate(collection);
+//     await Videogame.bulkCreate(collection);
 
-    await generatorGenre();
-    await addCollectionGenre();
-  } catch (err) {
-    throw err.message;
-  }
-};
+//     await generatorGenre();
+//     await addCollectionGenre();
+//   } catch (err) {
+//     throw err.message;
+//   }
+// };
 
 //--------------------add collection de genre_games-------
 const addCollectionGenre = async () => {
@@ -203,7 +203,7 @@ const addGame = async (data) => {
 };
 
 module.exports = {
-  formatGame,
+//  formatGame,
   addCollectionGenre,
   findAndCountAll,
   findById,
