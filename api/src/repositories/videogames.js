@@ -3,7 +3,7 @@ const { API_KEY } = process.env;
 const axios = require("axios");
 const videogame = require("../controllers/videogame");
 const { Op, conn: sequelize, Videogame, Genre } = require("../db");
-//const { generatorGenre } = require("../repositories/genres");// no en desarrollo
+const { generatorGenre } = require("../repositories/genres");// no en desarrollo
 
 
 // //---------------------add collection de RAWG----------

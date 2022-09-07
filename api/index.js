@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-//const { formatGame } = require("./src/repositories/videogames");//No desarrollo
+const { formatGame } = require("./src/repositories/videogames");//No desarrollo
 
 // Syncing all the models at once.
 
