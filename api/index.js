@@ -30,7 +30,7 @@ Promise.all([conn.authenticate, conn.sync()])
   .then(() =>
     server.listen( port, host, async () => {
       //revizar y configuarar
-      // await formatGame();//No desarrollo
+      await formatGame();//No desarrollo
       console.log("port",port," host",host);
     })
   )
