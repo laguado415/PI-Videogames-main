@@ -3,7 +3,7 @@ const { Sequelize, Op } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DATABASE_URL, DESARROLLO, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } =
-  process.env;
+  process.env;   
 
 const sequelize =
   DESARROLLO !== "dev"
